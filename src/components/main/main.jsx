@@ -1,6 +1,7 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 
-export const Main = () => (
+export const Main = ({apartments}) => (
   <React.Fragment>
     <div style={{display: `none`}}>
       <svg xmlns="http://www.w3.org/2000/svg">
@@ -129,8 +130,7 @@ export const Main = () => (
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    <a href="#">Beautiful &amp; luxurious apartment at great
-                      location</a>
+                    <a href="#">{apartments[0]}</a>
                   </h2>
                   <p className="place-card__type">Apartment</p>
                 </div>
@@ -162,7 +162,7 @@ export const Main = () => (
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    <a href="#">Wood and stone place</a>
+                    <a href="#">{apartments[1]}</a>
                   </h2>
                   <p className="place-card__type">Private room</p>
                 </div>
@@ -194,7 +194,7 @@ export const Main = () => (
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    <a href="#">Canal View Prinsengracht</a>
+                    <a href="#">{apartments[2]}</a>
                   </h2>
                   <p className="place-card__type">Apartment</p>
                 </div>
@@ -229,7 +229,7 @@ export const Main = () => (
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    <a href="#">Nice, cozy, warm big bed apartment</a>
+                    <a href="#">{apartments[3]}</a>
                   </h2>
                   <p className="place-card__type">Apartment</p>
                 </div>
@@ -261,7 +261,7 @@ export const Main = () => (
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    <a href="#">Wood and stone place</a>
+                    <a href="#">{apartments[4]}</a>
                   </h2>
                   <p className="place-card__type">Private room</p>
                 </div>
@@ -276,3 +276,7 @@ export const Main = () => (
     </main>
   </React.Fragment>
 );
+
+Main.propTypes = {
+  apartments: PropTypes.arrayOf(String).isRequired,
+};
