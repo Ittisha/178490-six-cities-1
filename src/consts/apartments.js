@@ -1,4 +1,4 @@
-export const apartments = [
+export const APARTMENTS = [
   {
     isPremium: true,
     isInBookmarks: false,
