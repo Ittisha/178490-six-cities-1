@@ -106,13 +106,7 @@ export const Main = ({apartments}) => (
               {apartments.map((apartment) => (
                 <Card
                   key={apartment.id}
-                  isPremium={apartment.isPremium}
-                  isInBookmarks={apartment.isInBookmarks}
-                  price={apartment.price}
-                  rating={apartment.rating}
-                  photoUrl={apartment.photoUrl}
-                  title={apartment.title}
-                  type={apartment.type}
+                  apartment={apartment}
                 />
               ))}
             </div>

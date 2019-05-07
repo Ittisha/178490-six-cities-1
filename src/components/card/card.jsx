@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
-export const Card = ({isPremium, isInBookmarks, price, rating, photoUrl, title, type}) => {
+export const Card = ({apartment: {isPremium, isInBookmarks, price, rating, photoUrl, title, type}, onClick}) => {
   const bookmarkButtonClasses = isInBookmarks
     ? `place-card__bookmark-button place-card__bookmark-button--active button`
     : `place-card__bookmark-button button`;
@@ -37,7 +37,7 @@ export const Card = ({isPremium, isInBookmarks, price, rating, photoUrl, title, 
         </div>
       </div>
       <h2 className="place-card__name">
-        <a href="#">{title}</a>
+        <a href="#" onClick={onClick}>{title}</a>
       </h2>
       <p className="place-card__type">{type}</p>
     </div>
@@ -45,11 +45,14 @@ export const Card = ({isPremium, isInBookmarks, price, rating, photoUrl, title, 
 };
 
 Card.propTypes = {
-  isPremium: PropTypes.bool.isRequired,
-  isInBookmarks: PropTypes.bool.isRequired,
-  photoUrl: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  rating: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
+  apartment: PropTypes.shape({
+    isPremium: PropTypes.bool.isRequired,
+    isInBookmarks: PropTypes.bool.isRequired,
+    photoUrl: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    rating: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+  }),
+  onClick: PropTypes.func,
 };
