@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Main} from '../main/main';
-import {APARTMENTS} from '../../consts/apartments';
+import {OFFERS} from '../../mocks/offers';
 
 export const App = () => (
-  <Main apartments={APARTMENTS}/>
+  <Main apartments={OFFERS}/>
 );
