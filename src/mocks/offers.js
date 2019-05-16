@@ -42,5 +42,5 @@ export const OFFERS = [
     rating: `80%`,
     id: 4,
     coordinates: [52.3809553943508, 4.939309666406198],
-  },
+  }
 ];

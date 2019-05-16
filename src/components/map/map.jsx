@@ -5,7 +5,7 @@ import leaflet from 'leaflet';
 export class Map extends React.PureComponent {
   render() {
     return (
-      <div id="map" style={{height: 800, marginTop: 25, marginBottom: 25}} />
+      <div id="map" style={{height: `100%`, minHeight: 816}} />
     );
   }
 
@@ -18,36 +18,44 @@ export class Map extends React.PureComponent {
   }
 
   _createMap() {
-    const {initCoords, offersCoords} = this.props;
+    const {initCoords, apartmentsCoords} = this.props;
     const icon = leaflet.icon({
       iconUrl: `img/map-pin.svg`,
       iconSize: [30, 30],
     });
     const zoom = 12;
-    const map = leaflet.map(`map`, {
-      center: initCoords,
-      zoom,
-      zoomControl: false,
-      marker: true
-    });
+    try {
+      const map = leaflet.map(`map`, {
+        center: initCoords,
+        zoom,
+        zoomControl: false,
+        marker: true
+      });
 
-    map.setView(initCoords, zoom);
+      map.setView(initCoords, zoom);
 
-    leaflet
-      .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-        attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-      })
-      .addTo(map);
-
-    offersCoords.map((offer) => {
       leaflet
-        .marker(offer.coordinates, {icon})
+        .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+          attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+        })
         .addTo(map);
-    });
+
+      apartmentsCoords.map((offer) => {
+        leaflet
+          .marker(offer.coordinates, {icon})
+          .addTo(map);
+      });
+    } catch (e) {
+      // return undefined if leaflet is down. container should contain bg_image
+      return;
+    }
   }
 }
 
 Map.propTypes = {
   initCoords: PropTypes.arrayOf(PropTypes.number).isRequired,
-  offersCoords: PropTypes.any // TODO
+  apartmentsCoords: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
+  })).isRequired,
 };

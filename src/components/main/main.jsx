@@ -5,6 +5,7 @@ import {CardList} from '../card-list/card-list';
 import {Map} from '../map/map';
 
 export const Main = ({apartments}) => {
+  const apartmentsCoords = apartments.map(({id, coordinates}) => ({id, coordinates}));
   const city = [52.38333, 4.9];
   return (
     <React.Fragment>
@@ -115,7 +116,7 @@ export const Main = ({apartments}) => {
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map initCoords={city} offersCoords={apartments}/>
+                <Map initCoords={city} apartmentsCoords={apartmentsCoords}/>
               </section>
             </div>
           </div>
@@ -135,5 +136,6 @@ Main.propTypes = {
     rating: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
+    coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
   })).isRequired,
 };
