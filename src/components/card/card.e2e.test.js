@@ -3,23 +3,41 @@ import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import {Card} from './card';
-import {APARTMENTS} from '../../consts/apartments';
+import {OFFERS} from '../../mocks/offers';
 
-const mockApartment = APARTMENTS[0];
+const mockApartment = OFFERS[1];
 
 Enzyme.configure({adapter: new Adapter()});
 
-it(`Title click call clickHandler`, () => {
-  const clickHandler = jest.fn();
-  const card = shallow(
-      <Card
-        apartment={mockApartment}
-        onClick={clickHandler}
-      />
-  );
+describe(`e2e Card component test`, () => {
+  it(`Image click call clickHandler`, () => {
+    const clickHandler = jest.fn();
+    const card = shallow(
+        <Card
+          apartment={mockApartment}
+          onImgClick={clickHandler}
+        />
+    );
 
-  const titleButton = card.find(`.place-card__name a`).first();
-  titleButton.simulate(`click`);
+    const titleButton = card.find(`.place-card__image-wrapper a`).first();
+    titleButton.simulate(`click`);
 
-  expect(clickHandler).toHaveBeenCalledTimes(1);
+    expect(clickHandler).toHaveBeenCalledTimes(1);
+  });
+
+  it(`should send apartment id on image click`, () => {
+    const clickHandler = jest.fn();
+    const card = shallow(
+        <Card
+          apartment={mockApartment}
+          onImgClick={clickHandler}
+        />
+    );
+
+    const titleButton = card.find(`.place-card__image-wrapper a`).first();
+    titleButton.simulate(`click`);
+
+    expect(clickHandler).toHaveBeenCalledWith(mockApartment.id);
+  });
 });
+

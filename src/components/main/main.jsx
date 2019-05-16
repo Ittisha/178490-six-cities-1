@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
-import {Card} from '../card/card';
+import {CardList} from '../card-list/card-list';
 
 export const Main = ({apartments}) => (
   <React.Fragment>
@@ -103,12 +103,7 @@ export const Main = ({apartments}) => (
               </ul>
             </form>
             <div className="cities__places-list places__list tabs__content">
-              {apartments.map((apartment) => (
-                <Card
-                  key={apartment.id}
-                  apartment={apartment}
-                />
-              ))}
+              <CardList apartments={apartments} />
             </div>
           </section>
           <div className="cities__right-section">
