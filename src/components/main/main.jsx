@@ -1,12 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import {INIT_COORDS} from '../../mocks/init-coords';
 
 import {CardList} from '../card-list/card-list';
 import {Map} from '../map/map';
 
 export const Main = ({apartments}) => {
   const apartmentsCoords = apartments.map(({id, coordinates}) => ({id, coordinates}));
-  const city = [52.38333, 4.9];
   return (
     <React.Fragment>
       <div style={{display: `none`}}>
@@ -116,7 +116,7 @@ export const Main = ({apartments}) => {
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map initCoords={city} apartmentsCoords={apartmentsCoords}/>
+                <Map initCoords={INIT_COORDS} apartmentsCoords={apartmentsCoords}/>
               </section>
             </div>
           </div>
