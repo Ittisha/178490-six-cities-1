@@ -8,6 +8,7 @@ export const OFFERS = [
     type: `Apartment`,
     rating: `93%`,
     id: 1,
+    coordinates: [52.3909553943508, 4.85309666406198],
   },
   {
     isPremium: false,
@@ -18,6 +19,7 @@ export const OFFERS = [
     type: `Private room`,
     rating: `80%`,
     id: 2,
+    coordinates: [52.369553943508, 4.85309666406198],
   },
   {
     isPremium: false,
@@ -28,6 +30,7 @@ export const OFFERS = [
     type: `Apartment`,
     rating: `80%`,
     id: 3,
+    coordinates: [52.3909553943508, 4.929309666406198],
   },
   {
     isPremium: false,
@@ -38,5 +41,6 @@ export const OFFERS = [
     type: `Apartment`,
     rating: `80%`,
     id: 4,
+    coordinates: [52.3809553943508, 4.939309666406198],
   },
 ];
