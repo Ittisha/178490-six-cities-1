@@ -44,5 +44,6 @@ CardList.propTypes = {
     rating: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
+    coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
   })).isRequired,
 };

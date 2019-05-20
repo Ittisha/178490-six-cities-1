@@ -69,6 +69,7 @@ Card.propTypes = {
     type: PropTypes.string.isRequired,
     rating: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
+    coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
   }),
   onImgClick: PropTypes.func.isRequired,
 };
