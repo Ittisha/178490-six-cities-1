@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {INIT_COORDS} from '../../mocks/init-coords';
 
 import {CardList} from '../card-list/card-list';
-import {Map} from '../map/map';
+import {CitiesMap} from '../map/cities-map';
 
 export const Main = ({apartments}) => {
   const apartmentsCoords = apartments.map(({id, coordinates}) => ({id, coordinates}));
@@ -116,7 +116,7 @@ export const Main = ({apartments}) => {
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map initCoords={INIT_COORDS} apartmentsCoords={apartmentsCoords}/>
+                <CitiesMap initCoords={INIT_COORDS} apartmentsCoords={apartmentsCoords}/>
               </section>
             </div>
           </div>

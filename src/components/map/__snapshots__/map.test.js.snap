@@ -6,7 +6,6 @@ exports[`Map component is rendered properly 1`] = `
   style={
     Object {
       "height": "100%",
-      "minHeight": 816,
     }
   }
 />
