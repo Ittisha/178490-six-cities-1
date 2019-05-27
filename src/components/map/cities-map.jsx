@@ -2,8 +2,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 
-export class CitiesMap extends React.PureComponent {
+const ZOOM = 12;
 
+export class CitiesMap extends React.PureComponent {
   render() {
     return (
       <div id="map" style={{height: `100%`}} />
@@ -12,6 +13,11 @@ export class CitiesMap extends React.PureComponent {
 
   componentDidMount() {
     this._createMap();
+    setTimeout(() => this._map.invalidateSize(true), 300);
+  }
+
+  componentDidUpdate() {
+    this._updateMarkers();
   }
 
   componentWillUnmount() {
@@ -19,20 +25,13 @@ export class CitiesMap extends React.PureComponent {
   }
 
   _createMap() {
-    const {initCoords, apartmentsCoords} = this.props;
-    const icon = leaflet.icon({
-      iconUrl: `img/map-pin.svg`,
-      iconSize: [27, 39],
-    });
-    const zoom = 12;
+    const {initCoords} = this.props;
     this._map = leaflet.map(`map`, {
       center: initCoords,
-      zoom,
+      zoom: ZOOM,
       zoomControl: false,
       marker: true
     });
-
-    this._map.setView(initCoords, zoom);
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -40,6 +39,16 @@ export class CitiesMap extends React.PureComponent {
       })
       .addTo(this._map);
 
+    this._updateMarkers();
+  }
+
+  _updateMarkers() {
+    const {initCoords, apartmentsCoords} = this.props;
+    const icon = leaflet.icon({
+      iconUrl: `img/map-pin.svg`,
+      iconSize: [27, 39],
+    });
+    this._map.setView(initCoords, ZOOM);
     apartmentsCoords.map((offer) => {
       leaflet
         .marker(offer.coordinates, {icon})

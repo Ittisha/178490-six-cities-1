@@ -1,12 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {INIT_COORDS} from '../../mocks/init-coords';
 
 import {CardList} from '../card-list/card-list';
 import {CitiesMap} from '../map/cities-map';
+import CityList from '../city-list/city-list';
 
-export const Main = ({apartments}) => {
-  const apartmentsCoords = apartments.map(({id, coordinates}) => ({id, coordinates}));
+export const Main = ({apartments, city}) => {
+  const filteredApartments = apartments.filter((apartment) => apartment.cityName === city.name);
+  const apartmentsCoords = filteredApartments.map(({id, coordinates}) => ({id, coordinates}));
   return (
     <React.Fragment>
       <div style={{display: `none`}}>
@@ -52,42 +53,7 @@ export const Main = ({apartments}) => {
 
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <div className="cities tabs">
-          <section className="locations container">
-            <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
-            </ul>
-          </section>
-        </div>
+        <CityList city={city.name} />
         <div className="cities__places-wrapper">
           <div className="cities__places-container container">
             <section className="cities__places places">
@@ -111,12 +77,12 @@ export const Main = ({apartments}) => {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <CardList apartments={apartments}/>
+                <CardList apartments={filteredApartments}/>
               </div>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <CitiesMap initCoords={INIT_COORDS} apartmentsCoords={apartmentsCoords}/>
+                <CitiesMap initCoords={city.coords} apartmentsCoords={apartmentsCoords}/>
               </section>
             </div>
           </div>
@@ -138,4 +104,8 @@ Main.propTypes = {
     id: PropTypes.number.isRequired,
     coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
   })).isRequired,
+  city: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    coords: PropTypes.arrayOf(PropTypes.number).isRequired,
+  }).isRequired,
 };

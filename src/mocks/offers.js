@@ -9,6 +9,8 @@ export const OFFERS = [
     rating: `93%`,
     id: 1,
     coordinates: [52.3909553943508, 4.85309666406198],
+    cityName: `Amsterdam`,
+    cityCoords: [52.38333, 4.9],
   },
   {
     isPremium: false,
@@ -20,6 +22,8 @@ export const OFFERS = [
     rating: `80%`,
     id: 2,
     coordinates: [52.369553943508, 4.85309666406198],
+    cityName: `Amsterdam`,
+    cityCoords: [52.38333, 4.9],
   },
   {
     isPremium: false,
@@ -31,6 +35,8 @@ export const OFFERS = [
     rating: `80%`,
     id: 3,
     coordinates: [52.3909553943508, 4.929309666406198],
+    cityName: `Amsterdam`,
+    cityCoords: [52.38333, 4.9],
   },
   {
     isPremium: false,
@@ -42,5 +48,21 @@ export const OFFERS = [
     rating: `80%`,
     id: 4,
     coordinates: [52.3809553943508, 4.939309666406198],
+    cityName: `Amsterdam`,
+    cityCoords: [52.38333, 4.9],
+  },
+  {
+    isPremium: false,
+    isInBookmarks: false,
+    title: `Nice, cozy, warm big bed apartment`,
+    photoUrl: `img/apartment-03.jpg`,
+    price: 100,
+    type: `Apartment`,
+    rating: `90%`,
+    id: 5,
+    coordinates: [48.866790, 2.378520],
+    cityName: `Paris`,
+    cityCoords: [48.864716, 2.349014],
   }
+
 ];
