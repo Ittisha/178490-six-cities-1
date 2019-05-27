@@ -11,7 +11,7 @@ export const ActionType = {
   GET_OFFERS: `GET_OFFERS`,
 };
 
-export const ActionCreators = {
+export const ActionCreator = {
   changeCity: (city) => {
     return {
       type: ActionType.CHANGE_CITY,

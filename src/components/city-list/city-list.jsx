@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import {CityLink} from '../city-link/city-link';
-import {ActionCreators} from '../../redux/reducer';
+import {ActionCreator} from '../../reducers/reducer';
 import {connect} from 'react-redux';
 
 export class CityList extends React.PureComponent {
@@ -46,6 +46,7 @@ const mapStateToProps = (state, ownProps) => {
   });
 
   return Object.assign({}, ownProps, {
+    city: state.city.name,
     cities: uniqueCities,
     citiesCoords,
   });
@@ -53,7 +54,7 @@ const mapStateToProps = (state, ownProps) => {
 
 
 const mapDispatchToProps = (dispatch) => ({
-  handleCityChange: (city) => dispatch(ActionCreators.changeCity(city)),
+  handleCityChange: (city) => dispatch(ActionCreator.changeCity(city)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CityList);

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Main} from '../main/main';
-import {ActionCreators} from '../../redux/reducer';
+import {ActionCreator} from '../../reducers/reducer';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -40,11 +40,11 @@ App.propTypes = {
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   city: state.city,
-  offers: state.offers,
+  offers: state.offers.filter((offer) => offer.cityName === state.city.name),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onAppMounting: () => dispatch(ActionCreators.getOffers())
+  onAppMounting: () => dispatch(ActionCreator.getOffers())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
