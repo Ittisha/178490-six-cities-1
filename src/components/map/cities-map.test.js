@@ -1,14 +1,14 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {Map} from './map';
+import {CitiesMap} from './cities-map';
 import {OFFERS} from '../../mocks/offers';
-import {INIT_COORDS} from '../../mocks/init-coords';
+import {INIT_CITY} from '../../mocks/init-city';
 
 const mockCoords = OFFERS.map(({id, coordinates}) => ({id, coordinates}));
 
 it(`Map component is rendered properly`, () => {
   const tree = renderer
-    .create(<Map apartmentsCoords={mockCoords} initCoords={INIT_COORDS} />)
+    .create(<CitiesMap apartmentsCoords={mockCoords} initCoords={INIT_CITY.coords} />)
     .toJSON();
 
   expect(tree).toMatchSnapshot();
