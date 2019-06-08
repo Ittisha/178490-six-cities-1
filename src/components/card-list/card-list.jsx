@@ -3,36 +3,17 @@ import PropTypes from 'prop-types';
 
 import {Card} from '../card/card';
 
-export class CardList extends React.PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      activeCard: null,
-    };
-
-    this._handleImgClick = this._handleImgClick.bind(this);
-  }
-
-  render() {
-    const {apartments} = this.props;
-    return (
-      <div className="cities__places-list places__list tabs__content">
-        {apartments.map((apartment) => (
-          <Card
-            key={apartment.id}
-            apartment={apartment}
-            onImgClick={this._handleImgClick}
-          />
-        ))}
-      </div>
-    );
-  }
-
-  _handleImgClick(cardId) {
-    this.setState({activeCard: cardId});
-  }
-}
+export const CardList = ({apartments, setActiveItem}) => (
+  <div className="cities__places-list places__list tabs__content">
+    {apartments.map((apartment) => (
+      <Card
+        key={apartment.id}
+        apartment={apartment}
+        onImgClick={setActiveItem}
+      />
+    ))}
+  </div>
+);
 
 CardList.propTypes = {
   apartments: PropTypes.arrayOf(PropTypes.shape({
@@ -46,4 +27,5 @@ CardList.propTypes = {
     id: PropTypes.number.isRequired,
     coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
   })).isRequired,
+  setActiveItem: PropTypes.func.isRequired,
 };

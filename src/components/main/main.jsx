@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 
 import {CardList} from '../card-list/card-list';
 import {CitiesMap} from '../map/cities-map';
-import CityList from '../city-list/city-list';
+import {CityList} from '../city-list/city-list';
 import {addPluralS} from '../../utils/addPluralS';
+import {withActiveItem} from '../../hoc/with-active-item';
 
-export const Main = ({apartments, city}) => {
+const CardListWithActiveItem = withActiveItem(CardList);
+
+export const Main = ({apartments, city, cities, citiesCoords, handleCityChange}) => {
   const apartmentsCoords = apartments.map(({id, coordinates}) => ({id, coordinates}));
   const apartmentsAmount = apartments.length;
   const placeWordForm = addPluralS(apartmentsAmount, `place`);
@@ -55,7 +58,12 @@ export const Main = ({apartments, city}) => {
 
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <CityList />
+        <CityList
+          city={city.name}
+          cities={cities}
+          citiesCoords={citiesCoords}
+          handleCityChange={handleCityChange}
+        />
         <div className="cities__places-wrapper">
           <div className="cities__places-container container">
             <section className="cities__places places">
@@ -79,7 +87,7 @@ export const Main = ({apartments, city}) => {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <CardList apartments={apartments}/>
+                <CardListWithActiveItem apartments={apartments}/>
               </div>
             </section>
             <div className="cities__right-section">
@@ -110,4 +118,7 @@ Main.propTypes = {
     name: PropTypes.string.isRequired,
     coords: PropTypes.arrayOf(PropTypes.number).isRequired,
   }).isRequired,
+  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
+  citiesCoords: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
+  handleCityChange: PropTypes.func.isRequired,
 };
