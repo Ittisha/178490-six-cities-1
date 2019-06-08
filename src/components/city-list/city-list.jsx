@@ -1,8 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import {CityLink} from '../city-link/city-link';
-import {ActionCreator} from '../../reducers/reducer';
-import {connect} from 'react-redux';
 
 export class CityList extends React.PureComponent {
   render() {
@@ -34,27 +32,4 @@ CityList.propTypes = {
   handleCityChange: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => {
-  const uniqueCities = [...new Set([...state.offers.map((offer) => offer.cityName)])];
-  let citiesCoords = {};
 
-  uniqueCities.forEach((city) => {
-    if (citiesCoords[city]) {
-      return;
-    }
-    citiesCoords[city] = state.offers.find((offer) => offer.cityName === city).cityCoords;
-  });
-
-  return Object.assign({}, ownProps, {
-    city: state.city.name,
-    cities: uniqueCities,
-    citiesCoords,
-  });
-};
-
-
-const mapDispatchToProps = (dispatch) => ({
-  handleCityChange: (city) => dispatch(ActionCreator.changeCity(city)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(CityList);

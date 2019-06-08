@@ -12,6 +12,7 @@ export class CityLink extends React.PureComponent {
     const {city, onLinkClick, cityCoords} = this.props;
     onLinkClick({name: city, coords: cityCoords});
   }
+
   render() {
     const {city, isActive} = this.props;
     const defaultClassName = `locations__item-link tabs__item`;

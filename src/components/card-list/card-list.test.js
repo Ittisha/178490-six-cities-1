@@ -5,7 +5,10 @@ import {OFFERS} from '../../mocks/offers';
 
 it(`Card component is rendered properly`, () => {
   const tree = renderer
-    .create(<CardList apartments={OFFERS} />)
+    .create(<CardList
+      apartments={OFFERS}
+      setActiveItem={() => {}}
+    />)
     .toJSON();
 
   expect(tree).toMatchSnapshot();
