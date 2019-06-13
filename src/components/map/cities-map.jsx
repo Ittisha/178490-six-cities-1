@@ -13,7 +13,7 @@ export class CitiesMap extends React.PureComponent {
 
   componentDidMount() {
     this._createMap();
-    setTimeout(() => this._map.invalidateSize(true), 300);
+    setTimeout(() => this._map.invalidateSize(true), 400);
   }
 
   componentDidUpdate() {
