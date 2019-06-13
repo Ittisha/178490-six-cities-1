@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import {getRatingPercent} from '../../utils/get-rating-percent';
 
 export class Card extends React.PureComponent {
   constructor(props) {
@@ -42,7 +43,7 @@ export class Card extends React.PureComponent {
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
-              <span style={{width: rating}}></span>
+              <span style={{width: `${getRatingPercent(rating)}`}}></span>
               <span className="visually-hidden">Rating</span>
             </div>
           </div>
@@ -67,7 +68,7 @@ Card.propTypes = {
     photoUrl: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
     coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
   }),
