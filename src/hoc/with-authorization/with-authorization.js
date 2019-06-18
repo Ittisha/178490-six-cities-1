@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {Operation} from '../../reducers/user/user';
+import {compose} from 'recompose';
 
 export const withAuthorization = (Component) => {
   class WithAuthorization extends React.PureComponent {
@@ -9,8 +12,8 @@ export const withAuthorization = (Component) => {
 
       this.state = {
         user: {
-          email: ``,
-          password: ``
+          email: `anna@gmail.com`,
+          password: `pas`
         }
       };
 
@@ -54,3 +57,12 @@ export const withAuthorization = (Component) => {
 
   return WithAuthorization;
 };
+
+const mapDispatchToProps = (dispatch) => ({
+  onLogIn: (data) => dispatch(Operation.logIn(data)),
+});
+
+export default compose(
+    connect(null, mapDispatchToProps),
+    withAuthorization
+);

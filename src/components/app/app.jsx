@@ -1,9 +1,14 @@
 import * as React from 'react';
-import {Main} from '../main/main';
-import {ActionCreator} from '../../reducers/cities/cities';
-import {getCity, getCities, getCityOffers, getCitiesCoords} from '../../reducers/selectors';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import {ActionCreator as CitiesActionCreator} from '../../reducers/cities/cities';
+import {getCity, getCities, getCityOffers, getCitiesCoords, getAuthorizationStatus} from '../../reducers/selectors';
+import {Main} from '../main/main';
+import {Header} from '../header/header';
+import {SignIn} from '../sign-in/sign-in';
+import withAuthorization from '../../hoc/with-authorization/with-authorization';
+
+const SignInWithAuthorization = withAuthorization(SignIn);
 
 export class App extends React.PureComponent {
   render() {
@@ -13,15 +18,33 @@ export class App extends React.PureComponent {
       cities,
       handleCityChange,
       citiesCoords,
+      isAuthorized,
     } = this.props;
+
+    const renderScreen = () => {
+      if (isAuthorized) {
+        return (
+          <SignInWithAuthorization />
+        );
+      }
+
+      return (
+        <Main
+          apartments={offers}
+          city={city}
+          cities={cities}
+          handleCityChange={handleCityChange}
+          citiesCoords={citiesCoords}
+        />
+      );
+    };
+
+
     return (
-      <Main
-        apartments={offers}
-        city={city}
-        cities={cities}
-        handleCityChange={handleCityChange}
-        citiesCoords={citiesCoords}
-      />
+      <React.Fragment>
+        <Header />
+        {renderScreen()}
+      </React.Fragment>
     );
   }
 }
@@ -47,6 +70,7 @@ App.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   citiesCoords: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
   handleCityChange: PropTypes.func.isRequired,
+  isAuthorized: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
@@ -54,10 +78,11 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   cities: getCities(state),
   citiesCoords: getCitiesCoords(state),
   offers: getCityOffers(state),
+  isAuthorized: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  handleCityChange: (city) => dispatch(ActionCreator.changeCity(city)),
+  handleCityChange: (city) => dispatch(CitiesActionCreator.changeCity(city)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
