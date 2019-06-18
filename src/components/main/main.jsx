@@ -5,7 +5,7 @@ import {CardList} from '../card-list/card-list';
 import {CitiesMap} from '../map/cities-map';
 import {CityList} from '../city-list/city-list';
 import {addPluralS} from '../../utils/addPluralS';
-import {withActiveItem} from '../../hoc/with-active-item';
+import {withActiveItem} from '../../hoc/with-active-item/with-active-item';
 
 const CardListWithActiveItem = withActiveItem(CardList);
 

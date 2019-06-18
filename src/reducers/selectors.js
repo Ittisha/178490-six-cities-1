@@ -9,6 +9,18 @@ export const getOffers = (state) => (
   state[NameSpace.OFFERS].offers
 );
 
+export const getUser = (state) => (
+  state[NameSpace.USER].user
+);
+
+export const getIfAuthorizationRequired = (state) => (
+  state[NameSpace.USER].isAuthorizationRequired
+);
+
+export const getAuthorizationStatus = (state) => (
+  state[NameSpace.USER].isAuthorized
+);
+
 export const getCities = createSelector(
     getOffers,
     (offers) => [...new Set(offers.map((offer) => offer.cityName))].slice(0, 6)
