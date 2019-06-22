@@ -2,9 +2,9 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {ActionCreator as CitiesActionCreator} from '../../reducers/cities/cities';
-import {getCity, getCities, getCityOffers, getCitiesCoords, getAuthorizationStatus} from '../../reducers/selectors';
+import {getCity, getCities, getCityOffers, getCitiesCoords, getIsAuthorizationRequired} from '../../reducers/selectors';
 import {Main} from '../main/main';
-import {Header} from '../header/header';
+import Header from '../header/header';
 import {SignIn} from '../sign-in/sign-in';
 import withAuthorization from '../../hoc/with-authorization/with-authorization';
 
@@ -18,11 +18,11 @@ export class App extends React.PureComponent {
       cities,
       handleCityChange,
       citiesCoords,
-      isAuthorized,
+      isAuthorizationRequired,
     } = this.props;
 
     const renderScreen = () => {
-      if (isAuthorized) {
+      if (isAuthorizationRequired) {
         return (
           <SignInWithAuthorization />
         );
@@ -70,7 +70,7 @@ App.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   citiesCoords: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
   handleCityChange: PropTypes.func.isRequired,
-  isAuthorized: PropTypes.bool.isRequired,
+  isAuthorizationRequired: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
@@ -78,7 +78,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   cities: getCities(state),
   citiesCoords: getCitiesCoords(state),
   offers: getCityOffers(state),
-  isAuthorized: getAuthorizationStatus(state),
+  isAuthorizationRequired: getIsAuthorizationRequired(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

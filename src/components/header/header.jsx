@@ -1,17 +1,18 @@
 import * as React from 'react';
 import PropTypes from "prop-types";
 import {connect} from 'react-redux';
-import {getAuthorizationStatus, getUser} from '../../reducers/selectors';
+import {getIsAuthorizationRequired, getUser} from '../../reducers/selectors';
+import {ActionCreator} from '../../reducers/user/user';
 
 export const Header = (props) => {
   const {
-    isAuthorized,
-    onClick,
+    isAuthorizationRequired,
+    requireAuthorizationStatus,
     user,
   } = props;
 
   const renderHeaderLogin = () => {
-    if (isAuthorized) {
+    if (isAuthorizationRequired && user) {
       return (
         <span className="header__user-name user__name">
           {user.email}
@@ -19,7 +20,7 @@ export const Header = (props) => {
       );
     }
     return (
-      <span className="header__login" onClick={onClick}>Sign in</span>
+      <span className="header__login" onClick={requireAuthorizationStatus}>Sign in</span>
     );
   };
 
@@ -70,18 +71,22 @@ export const Header = (props) => {
 };
 
 Header.propTypes = {
-  isAuthorized: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired // TODO
+  isAuthorizationRequired: PropTypes.bool.isRequired,
+  requireAuthorizationStatus: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign(
     {},
     ownProps,
     {
-      isAuthorized: getAuthorizationStatus(state),
+      isAuthorizationRequired: getIsAuthorizationRequired(state),
       user: getUser(state),
     }
 );
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = (dispatch) => ({
+  requireAuthorizationStatus: () => dispatch(ActionCreator.requireAuthorization(true)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -17,10 +17,6 @@ export const getIsAuthorizationRequired = (state) => (
   state[NameSpace.USER].isAuthorizationRequired
 );
 
-export const getAuthorizationStatus = (state) => (
-  state[NameSpace.USER].isAuthorized
-);
-
 export const getCities = createSelector(
     getOffers,
     (offers) => [...new Set(offers.map((offer) => offer.cityName))].slice(0, 6)

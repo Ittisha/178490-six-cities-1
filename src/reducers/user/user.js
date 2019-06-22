@@ -1,5 +1,4 @@
 const initialState = {
-  isAuthorized: false,
   isAuthorizationRequired: false,
   user: {
     id: null,
@@ -13,6 +12,7 @@ const initialState = {
 
 const ActionType = {
   AUTHORIZE: `AUTHORIZE`,
+  SET_IS_AUTHORIZED: `SET_IS_AUTHORIZED`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
 };
 
@@ -40,7 +40,7 @@ const Operation = {
         if (response.status === 200) {
           dispatch(ActionCreator.authorize(response.data));
         }
-        return dispatch(ActionCreator.authorize(response.data));
+        return dispatch(ActionCreator.requireAuthorization(true));
       })
       .catch((err) => {
         throw err;
@@ -50,8 +50,8 @@ const Operation = {
   logIn: (data) => (dispatch, _getState, api) => {
     return api.post(`/login`, data)
       .then((response) => {
-        dispatch(ActionCreator.logIn(response.data));
-        dispatch(ActionCreator.requireAuthorization(false));
+        dispatch(ActionCreator.authorize(response.data));
+        dispatch(ActionCreator.requireAuthorization(true));
       })
       .catch((err) => {
         throw err;
@@ -61,21 +61,7 @@ const Operation = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.GET_USER: return Object.assign({}, state, {
-      user: {
-        id: action.payload.id,
-        email: action.payload.email,
-        name: action.payload.name,
-        avatarUrl: action.payload.avatar_url,
-        isPro: action.payload.is_pro,
-      }
-    });
-
-    case ActionType.CHECK_AUTHORIZATION: return Object.assign({}, state, {
-      isAuthorized: action.payload,
-    });
-
-    case ActionType.LOG_IN: return Object.assign({}, state, {
+    case ActionType.AUTHORIZE: return Object.assign({}, state, {
       user: {
         id: action.payload.id,
         email: action.payload.email,

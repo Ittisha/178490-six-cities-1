@@ -8,8 +8,8 @@ describe(`Header component`, () => {
   it(`Header is correctly rendered`, () => {
     const header = renderer
       .create(<Header
-        isAuthorized={false}
-        onClick={jest.fn()}
+        isAuthorizationRequired={false}
+        requireAuthorizationStatus={jest.fn()}
         user={{}}
       />)
       .toJSON();
