@@ -6,6 +6,8 @@ import {CitiesMap} from '../map/cities-map';
 import {CityList} from '../city-list/city-list';
 import {addPluralS} from '../../utils/addPluralS';
 import {withActiveItem} from '../../hoc/with-active-item/with-active-item';
+import ApartmentPropsShape from '../props/apartment';
+import Header from '../header/header';
 
 const CardListWithActiveItem = withActiveItem(CardList);
 
@@ -14,7 +16,8 @@ export const Main = ({apartments, city, cities, citiesCoords, handleCityChange})
   const apartmentsAmount = apartments.length;
   const placeWordForm = addPluralS(apartmentsAmount, `place`);
   return (
-    <React.Fragment>
+    <div className="page page--gray page--main">
+      <Header />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <CityList
@@ -57,22 +60,12 @@ export const Main = ({apartments, city, cities, citiesCoords, handleCityChange})
           </div>
         </div>
       </main>
-    </React.Fragment>
+    </div>
   );
 };
 
 Main.propTypes = {
-  apartments: PropTypes.arrayOf(PropTypes.shape({
-    isPremium: PropTypes.bool,
-    isInBookmarks: PropTypes.bool,
-    photoUrl: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired,
-    id: PropTypes.number.isRequired,
-    coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
-  })).isRequired,
+  apartments: PropTypes.arrayOf(ApartmentPropsShape).isRequired,
   city: PropTypes.shape({
     name: PropTypes.string.isRequired,
     coords: PropTypes.arrayOf(PropTypes.number).isRequired,

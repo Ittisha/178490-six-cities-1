@@ -3,16 +3,24 @@ import ReactDOM from 'react-dom';
 import {Provider} from "react-redux";
 import {createStore, applyMiddleware} from 'redux';
 import {createApi} from './api';
-import {Operation} from './reducers/offers/offers-data';
 import thunk from 'redux-thunk';
 import {compose} from 'recompose';
+import {Router} from 'react-router-dom';
 
-
+import {history} from './history';
+import {Operation as OffersOperatiom} from './reducers/offers/offers-data';
+import {Operation as UserOperation} from './reducers/user/user';
 import App from './components/app/app.jsx';
 import {reducer} from './reducers/reducer';
+import {ActionCreator as UserActionCreator} from './reducers/user/user';
 
 const init = () => {
-  const api = createApi((...args) => store.dispatch(...args));
+  const api = createApi(() => {
+    history.push(`/login`);
+    store.dispatch(UserActionCreator.setIsAuthorized(false));
+    store.dispatch(UserActionCreator.setUserData(null));
+  });
+
   const store = createStore(
       reducer,
       compose(
@@ -23,11 +31,14 @@ const init = () => {
       )
   );
 
-  store.dispatch(Operation.loadOffers());
+  store.dispatch(OffersOperatiom.loadOffers());
+  store.dispatch(UserOperation.checkAuthorization());
 
   ReactDOM.render(
       <Provider store={store}>
-        <App />
+        <Router history={history}>
+          <App />
+        </Router>
       </Provider>,
       document.querySelector(`#root`));
 };

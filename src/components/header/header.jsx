@@ -1,18 +1,18 @@
 import * as React from 'react';
 import PropTypes from "prop-types";
 import {connect} from 'react-redux';
-import {getIsAuthorizationRequired, getUser} from '../../reducers/selectors';
-import {ActionCreator} from '../../reducers/user/user';
+import {NavLink} from "react-router-dom";
+import {getIsAuthorized, getUser} from '../../reducers/selectors';
+import {BASE_URL} from '../../api';
 
 export const Header = (props) => {
   const {
-    isAuthorizationRequired,
-    requireAuthorizationStatus,
+    isAuthorized,
     user,
   } = props;
 
-  const renderHeaderLogin = () => {
-    if (isAuthorizationRequired && user) {
+  const renderLinkLabel = () => {
+    if (isAuthorized && user) {
       return (
         <span className="header__user-name user__name">
           {user.email}
@@ -20,8 +20,23 @@ export const Header = (props) => {
       );
     }
     return (
-      <span className="header__login" onClick={requireAuthorizationStatus}>Sign in</span>
+      <span className="header__login">Sign in</span>
     );
+  };
+
+  const renderAvatar = () => {
+    if (isAuthorized && user.hasOwnProperty(`avatarUrl`)) {
+      return (
+        <div
+          className="header__avatar-wrapper user__avatar-wrapper"
+          style={{
+            backgroundImage: `url("${BASE_URL}${user.avatarUrl}")`
+          }}
+        >
+        </div>
+      );
+    }
+    return null;
   };
 
   return (
@@ -47,19 +62,24 @@ export const Header = (props) => {
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a className="header__logo-link header__logo-link--active">
+              <NavLink
+                className="header__logo-link header__logo-link--active"
+                to="/"
+              >
                 <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81"
                   height="41"/>
-              </a>
+              </NavLink>
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
-                  <a className="header__nav-link header__nav-link--profile" href="#">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
-                    {renderHeaderLogin()}
-                  </a>
+                  <NavLink
+                    className="header__nav-link header__nav-link--profile"
+                    to={isAuthorized ? `/favorites` : `/login`}
+                  >
+                    {renderAvatar()}
+                    {renderLinkLabel()}
+                  </NavLink>
                 </li>
               </ul>
             </nav>
@@ -71,22 +91,17 @@ export const Header = (props) => {
 };
 
 Header.propTypes = {
-  isAuthorizationRequired: PropTypes.bool.isRequired,
-  requireAuthorizationStatus: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired
+  isAuthorized: PropTypes.bool.isRequired,
+  user: PropTypes.object
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign(
     {},
     ownProps,
     {
-      isAuthorizationRequired: getIsAuthorizationRequired(state),
+      isAuthorized: getIsAuthorized(state),
       user: getUser(state),
     }
 );
 
-const mapDispatchToProps = (dispatch) => ({
-  requireAuthorizationStatus: () => dispatch(ActionCreator.requireAuthorization(true)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps)(Header);

@@ -12,8 +12,8 @@ export const withAuthorization = (Component) => {
 
       this.state = {
         user: {
-          email: `anna@gmail.com`,
-          password: `pas`
+          email: ``,
+          password: ``
         }
       };
 
