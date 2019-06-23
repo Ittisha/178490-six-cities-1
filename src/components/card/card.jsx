@@ -1,6 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
+
 import {getRatingPercent} from '../../utils/get-rating-percent';
+import {APARTMENT_TYPES} from '../../consts';
 
 export class Card extends React.PureComponent {
   constructor(props) {
@@ -11,7 +14,16 @@ export class Card extends React.PureComponent {
 
   render() {
     const {apartment} = this.props;
-    const {isPremium, isInBookmarks, price, rating, photoUrl, title, type} = apartment;
+    const {
+      isPremium,
+      isInBookmarks,
+      price,
+      rating,
+      photoUrl,
+      title,
+      type,
+      id
+    } = apartment;
     const bookmarkButtonClasses = isInBookmarks
       ? `place-card__bookmark-button place-card__bookmark-button--active button`
       : `place-card__bookmark-button button`;
@@ -48,16 +60,16 @@ export class Card extends React.PureComponent {
             </div>
           </div>
           <h2 className="place-card__name">
-            <a href="#">{title}</a>
+            <Link to={`/offer/${id}`}>{title}</Link>
           </h2>
-          <p className="place-card__type">{type}</p>
+          <p className="place-card__type">{APARTMENT_TYPES[type]}</p>
         </div>
       </article>);
   }
 
   _handleImgClick() {
     const {apartment, onImgClick} = this.props;
-    onImgClick(apartment.id);
+    onImgClick(apartment);
   }
 }
 

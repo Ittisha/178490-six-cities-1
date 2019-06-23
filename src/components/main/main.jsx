@@ -2,17 +2,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 
 import {CardList} from '../card-list/card-list';
-import {CitiesMap} from '../map/cities-map';
+import {CitiesMap} from '../cities-map/cities-map';
 import {CityList} from '../city-list/city-list';
 import {addPluralS} from '../../utils/addPluralS';
-import {withActiveItem} from '../../hoc/with-active-item/with-active-item';
-import ApartmentPropsShape from '../props/apartment';
+import ApartmentPropsShape from '../../props/apartment';
 import Header from '../header/header';
 
-const CardListWithActiveItem = withActiveItem(CardList);
-
-export const Main = ({apartments, city, cities, citiesCoords, handleCityChange}) => {
-  const apartmentsCoords = apartments.map(({id, coordinates}) => ({id, coordinates}));
+export const Main = ({apartments, city, cities, citiesCoords, handleCityChange, activeItem, setActiveItem, citiesZoom}) => {
+  const apartmentsCoords = apartments.map(({id, coordinates, zoom}) => ({id, coordinates, zoom}));
   const apartmentsAmount = apartments.length;
   const placeWordForm = addPluralS(apartmentsAmount, `place`);
   return (
@@ -24,6 +21,7 @@ export const Main = ({apartments, city, cities, citiesCoords, handleCityChange})
           city={city.name}
           cities={cities}
           citiesCoords={citiesCoords}
+          citiesZoom={citiesZoom}
           handleCityChange={handleCityChange}
         />
         <div className="cities__places-wrapper">
@@ -49,12 +47,17 @@ export const Main = ({apartments, city, cities, citiesCoords, handleCityChange})
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <CardListWithActiveItem apartments={apartments}/>
+                <CardList apartments={apartments} setActiveOffer={setActiveItem} />
               </div>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <CitiesMap initCoords={city.coords} apartmentsCoords={apartmentsCoords}/>
+                <CitiesMap
+                  apartmentsCoords={apartmentsCoords}
+                  citiesZoom={citiesZoom}
+                  activeItem={activeItem}
+                  city={city}
+                />
               </section>
             </div>
           </div>
@@ -69,8 +72,12 @@ Main.propTypes = {
   city: PropTypes.shape({
     name: PropTypes.string.isRequired,
     coords: PropTypes.arrayOf(PropTypes.number).isRequired,
+    zoom: PropTypes.number.isRequired,
   }).isRequired,
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   citiesCoords: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
+  citiesZoom: PropTypes.objectOf(PropTypes.number).isRequired,
   handleCityChange: PropTypes.func.isRequired,
+  activeItem: ApartmentPropsShape,
+  setActiveItem: PropTypes.func.isRequired,
 };

@@ -9,6 +9,7 @@ it(`CityLink component is rendered properly`, () => {
         <CityLink
           city={INIT_CITY.name}
           cityCoords={INIT_CITY.coords}
+          cityZoom={12}
           isActive={true}
           onLinkClick={() => {}}
         />)

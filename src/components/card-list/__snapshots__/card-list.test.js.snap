@@ -95,16 +95,15 @@ exports[`Card component is rendered properly 1`] = `
         className="place-card__name"
       >
         <a
-          href="#"
+          href="/offer/1"
+          onClick={[Function]}
         >
           Beautiful & luxurious apartment at great location
         </a>
       </h2>
       <p
         className="place-card__type"
-      >
-        Apartment
-      </p>
+      />
     </div>
   </article>
   <article
@@ -191,16 +190,15 @@ exports[`Card component is rendered properly 1`] = `
         className="place-card__name"
       >
         <a
-          href="#"
+          href="/offer/2"
+          onClick={[Function]}
         >
           Wood and stone place
         </a>
       </h2>
       <p
         className="place-card__type"
-      >
-        Private room
-      </p>
+      />
     </div>
   </article>
   <article
@@ -287,16 +285,15 @@ exports[`Card component is rendered properly 1`] = `
         className="place-card__name"
       >
         <a
-          href="#"
+          href="/offer/3"
+          onClick={[Function]}
         >
           Canal View Prinsengracht
         </a>
       </h2>
       <p
         className="place-card__type"
-      >
-        Apartment
-      </p>
+      />
     </div>
   </article>
   <article
@@ -383,16 +380,15 @@ exports[`Card component is rendered properly 1`] = `
         className="place-card__name"
       >
         <a
-          href="#"
+          href="/offer/4"
+          onClick={[Function]}
         >
           Nice, cozy, warm big bed apartment
         </a>
       </h2>
       <p
         className="place-card__type"
-      >
-        Apartment
-      </p>
+      />
     </div>
   </article>
   <article
@@ -479,16 +475,15 @@ exports[`Card component is rendered properly 1`] = `
         className="place-card__name"
       >
         <a
-          href="#"
+          href="/offer/5"
+          onClick={[Function]}
         >
           Nice, cozy, warm big bed apartment
         </a>
       </h2>
       <p
         className="place-card__type"
-      >
-        Apartment
-      </p>
+      />
     </div>
   </article>
 </div>

@@ -12,6 +12,10 @@ const citiesCoords = {
   Amsterdam: [52.38333, 4.9],
   Paris: [48.864716, 2.349014],
 };
+const citiesZoom = {
+  Amsterdam: 17,
+  Paris: 15,
+};
 
 it(`App is rendered properly`, () => {
   const tree = shallow(
@@ -23,6 +27,7 @@ it(`App is rendered properly`, () => {
         onAppMounting={() => {}}
         handleCityChange={() => {}}
         isAuthorized={false}
+        citiesZoom={citiesZoom}
       />);
 
   expect(tree).toMatchSnapshot();

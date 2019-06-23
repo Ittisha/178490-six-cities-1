@@ -25,7 +25,7 @@ describe(`e2e Card component test`, () => {
     expect(clickHandler).toHaveBeenCalledTimes(1);
   });
 
-  it(`should send apartment id on image click`, () => {
+  it(`should send apartment on image click`, () => {
     const clickHandler = jest.fn();
     const card = shallow(
         <Card
@@ -37,7 +37,7 @@ describe(`e2e Card component test`, () => {
     const titleButton = card.find(`.place-card__image-wrapper a`).first();
     titleButton.simulate(`click`);
 
-    expect(clickHandler).toHaveBeenCalledWith(mockApartment.id);
+    expect(clickHandler).toHaveBeenCalledWith(mockApartment);
   });
 });
 

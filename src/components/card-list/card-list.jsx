@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 import {Card} from '../card/card';
 
-export const CardList = ({apartments, setActiveItem}) => (
+export const CardList = ({apartments, setActiveOffer}) => (
   <div className="cities__places-list places__list tabs__content">
     {apartments.map((apartment) => (
       <Card
         key={apartment.id}
         apartment={apartment}
-        onImgClick={setActiveItem}
+        onImgClick={setActiveOffer}
       />
     ))}
   </div>
@@ -27,5 +27,5 @@ CardList.propTypes = {
     id: PropTypes.number.isRequired,
     coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
   })).isRequired,
-  setActiveItem: PropTypes.func.isRequired,
+  setActiveOffer: PropTypes.func.isRequired,
 };

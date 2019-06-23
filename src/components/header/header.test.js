@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import {StaticRouter} from "react-router-dom";
 
 import {Header} from './header';
-import {user} from '../../mocks/user';
+import {USER_MAPPED} from '../../mocks/user';
 
 
 describe(`Header component`, () => {
@@ -12,7 +12,7 @@ describe(`Header component`, () => {
       .create(<StaticRouter>
         <Header
           isAuthorized={true}
-          user={user}
+          user={USER_MAPPED}
         />
       </StaticRouter>)
       .toJSON();
