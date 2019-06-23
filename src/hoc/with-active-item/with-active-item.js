@@ -15,6 +15,7 @@ export const withActiveItem = (Component) => {
       return (
         <Component
           {...this.props}
+          activeItem={this.state.activeItem}
           setActiveItem={this._setActiveItem}
         />);
     }

@@ -1,5 +1,7 @@
 import {createSelector} from 'reselect';
+
 import {NameSpace} from './reducer';
+import {calculateDistance} from '../utils/calculate-distance';
 
 export const getCity = (state) => (
   state[NameSpace.CITIES].city
@@ -16,6 +18,10 @@ export const getUser = (state) => (
 export const getIsAuthorized = (state) => (
   state[NameSpace.USER].isAuthorized
 );
+
+export const getOffer = (state, id) => {
+  return state[NameSpace.OFFERS].offers.find((offer) => offer.id === Number(id));
+};
 
 export const getAuthorizationError = (state) => (
   state[NameSpace.USER].error
@@ -35,6 +41,15 @@ export const getCitiesCoords = createSelector(
     }, {})
 );
 
+export const getCitiesZoom = createSelector(
+    getOffers,
+    getCities,
+    (offers, cities) => cities.reduce((citiesZoom, city) => {
+      citiesZoom[city] = offers.find((offer) => offer.cityName === city).cityZoom;
+      return citiesZoom;
+    }, {})
+);
+
 export const getCityOffers = createSelector(
     getCity,
     getOffers,
@@ -42,3 +57,20 @@ export const getCityOffers = createSelector(
       return offers.filter((offer) => offer.cityName === city.name);
     }
 );
+
+export const getNearestOffers = (id, number) => createSelector(
+    getOffers,
+    (offers) => {
+      if (!offers && !offers.length) {
+        return [];
+      }
+      const currentOffer = offers.find((offer) => offer.id === Number(id));
+
+      return offers
+        .map((offer) => {
+          offer.distance = calculateDistance(currentOffer.cityCoords[0], currentOffer.cityCoords[1], offer.cityCoords[0], offer.cityCoords[1]);
+          return offer;
+        })
+        .sort((offer1, offer2) => offer1.distance - offer2.distance)
+        .slice(1, number + 1);
+    });

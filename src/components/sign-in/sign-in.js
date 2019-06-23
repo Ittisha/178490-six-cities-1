@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import Header from '../header/header';
+import userPropTypes from '../../props/user';
 
 export const SignIn = (props) => {
   const {
@@ -64,5 +66,5 @@ export const SignIn = (props) => {
 SignIn.propTypes = {
   onChange: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
+  user: userPropTypes,
 };

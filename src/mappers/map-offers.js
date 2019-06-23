@@ -5,6 +5,7 @@ export const mapOffers = (offers) => offers.map((offer) => ({
     offer.city.location.latitude,
     offer.city.location.longitude
   ],
+  cityZoom: offer.city.location.zoom,
   coordinates: [
     offer.location.latitude,
     offer.location.longitude

@@ -2,8 +2,10 @@ import * as React from 'react';
 import PropTypes from "prop-types";
 import {connect} from 'react-redux';
 import {NavLink} from "react-router-dom";
+
 import {getIsAuthorized, getUser} from '../../reducers/selectors';
 import {BASE_URL} from '../../api';
+import userPropTypes from '../../props/user';
 
 export const Header = (props) => {
   const {
@@ -66,7 +68,7 @@ export const Header = (props) => {
                 className="header__logo-link header__logo-link--active"
                 to="/"
               >
-                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81"
+                <img className="header__logo" src="/img/logo.svg" alt="6 cities logo" width="81"
                   height="41"/>
               </NavLink>
             </div>
@@ -92,7 +94,7 @@ export const Header = (props) => {
 
 Header.propTypes = {
   isAuthorized: PropTypes.bool.isRequired,
-  user: PropTypes.object
+  user: userPropTypes,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign(

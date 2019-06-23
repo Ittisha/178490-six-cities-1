@@ -40,3 +40,30 @@ export const OFFER = {
   },
   "id": 1
 };
+
+export const OFFER_MAPPED = {
+  isPremium: true,
+  isInBookmarks: false,
+  title: `Beautiful & luxurious apartment at great location`,
+  photoUrl: `img/apartment-01.jpg`,
+  price: 120,
+  type: `Apartment`,
+  rating: 4.65,
+  id: 1,
+  coordinates: [52.3909553943508, 4.85309666406198],
+  cityName: `Amsterdam`,
+  cityCoords: [52.38333, 4.9],
+  bedrooms: 2,
+  cityZoom: 15,
+  description: `description`,
+  goods: [`Something`],
+  host: {
+    id: 2,
+    isPro: true,
+    name: `Name`,
+    avatar: `apartment-01.jpg`,
+  },
+  images: [`img/apartment-01.jpg`],
+  maxAdults: 4,
+  zoom: 16,
+};

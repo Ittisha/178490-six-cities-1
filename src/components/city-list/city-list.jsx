@@ -4,7 +4,13 @@ import {CityLink} from '../city-link/city-link';
 
 export class CityList extends React.PureComponent {
   render() {
-    const {cities, city, handleCityChange, citiesCoords} = this.props;
+    const {
+      cities,
+      city,
+      handleCityChange,
+      citiesCoords,
+      citiesZoom,
+    } = this.props;
     return (
       <div className="cities tabs">
         <section className="locations container">
@@ -14,6 +20,7 @@ export class CityList extends React.PureComponent {
                 key={cityItem}
                 city={cityItem}
                 cityCoords={citiesCoords[cityItem]}
+                cityZoom={citiesZoom[cityItem]}
                 isActive={cityItem === city}
                 onLinkClick={handleCityChange}
               />
@@ -29,6 +36,7 @@ CityList.propTypes = {
   city: PropTypes.string.isRequired,
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   citiesCoords: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
+  citiesZoom: PropTypes.objectOf(PropTypes.number).isRequired,
   handleCityChange: PropTypes.func.isRequired,
 };
 

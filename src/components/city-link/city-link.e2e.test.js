@@ -14,6 +14,7 @@ describe(`e2e CityLink component test`, () => {
         <CityLink
           city={INIT_CITY.name}
           cityCoords={INIT_CITY.coords}
+          cityZoom={12}
           isActive={false}
           onLinkClick={clickHandler}
         />
@@ -32,6 +33,7 @@ describe(`e2e CityLink component test`, () => {
         <CityLink
           city={INIT_CITY.name}
           cityCoords={INIT_CITY.coords}
+          cityZoom={12}
           isActive={false}
           onLinkClick={clickHandler}
         />

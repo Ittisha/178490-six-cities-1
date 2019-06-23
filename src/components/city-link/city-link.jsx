@@ -9,8 +9,8 @@ export class CityLink extends React.PureComponent {
 
   onClick(evt) {
     evt.preventDefault();
-    const {city, onLinkClick, cityCoords} = this.props;
-    onLinkClick({name: city, coords: cityCoords});
+    const {city, onLinkClick, cityCoords, cityZoom} = this.props;
+    onLinkClick({name: city, coords: cityCoords, zoom: cityZoom});
   }
 
   render() {
@@ -34,6 +34,7 @@ export class CityLink extends React.PureComponent {
 CityLink.propTypes = {
   city: PropTypes.string.isRequired,
   cityCoords: PropTypes.arrayOf(PropTypes.number).isRequired,
+  cityZoom: PropTypes.number.isRequired,
   isActive: PropTypes.bool.isRequired,
   onLinkClick: PropTypes.func.isRequired,
 };
