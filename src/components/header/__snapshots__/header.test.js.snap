@@ -55,7 +55,11 @@ Array [
           className="header__left"
         >
           <a
-            className="header__logo-link header__logo-link--active"
+            aria-current="page"
+            className="header__logo-link header__logo-link--active active"
+            href="/"
+            onClick={[Function]}
+            style={Object {}}
           >
             <img
               alt="6 cities logo"
@@ -76,17 +80,15 @@ Array [
               className="header__nav-item user"
             >
               <a
+                aria-current={null}
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                href="/favorites"
+                onClick={[Function]}
               >
-                <div
-                  className="header__avatar-wrapper user__avatar-wrapper"
-                />
                 <span
-                  className="header__login"
-                  onClick={[MockFunction]}
+                  className="header__user-name user__name"
                 >
-                  Sign in
+                  ann@gm.com
                 </span>
               </a>
             </li>

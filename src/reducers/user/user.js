@@ -1,35 +1,38 @@
+import {mapUser} from '../../mappers/map-user';
+
 const initialState = {
-  isAuthorizationRequired: false,
-  user: {
-    id: null,
-    email: ``,
-    name: ``,
-    avatarUrl: ``,
-    isPro: false,
-  },
+  isAuthorized: false,
+  user: null,
+  error: null,
 };
 
 
 const ActionType = {
-  AUTHORIZE: `AUTHORIZE`,
+  SET_USER_DATA: `SET_USER_DATA`,
   SET_IS_AUTHORIZED: `SET_IS_AUTHORIZED`,
-  REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  SET_ERROR: `SET_ERROR`,
 };
 
 const ActionCreator = {
-  authorize: (user) => {
+  setUserData: (user) => {
     return {
-      type: ActionType.AUTHORIZE,
+      type: ActionType.SET_USER_DATA,
       payload: user,
     };
   },
 
-  requireAuthorization: (status) => {
+  setIsAuthorized: (status) => {
     return {
-      type: ActionType.REQUIRED_AUTHORIZATION,
+      type: ActionType.SET_IS_AUTHORIZED,
       payload: status,
     };
   },
+  setError: (error) => {
+    return {
+      type: ActionType.SET_ERROR,
+      payload: error,
+    };
+  }
 };
 
 
@@ -37,42 +40,36 @@ const Operation = {
   checkAuthorization: () => (dispatch, _getState, api) => {
     return api.get(`/login`)
       .then((response) => {
-        if (response.status === 200) {
-          dispatch(ActionCreator.authorize(response.data));
-        }
-        return dispatch(ActionCreator.requireAuthorization(true));
+        const userData = mapUser(response.data);
+        dispatch(ActionCreator.setUserData(userData));
+        dispatch(ActionCreator.setIsAuthorized(true));
       })
-      .catch((err) => {
-        throw err;
+      .catch((error) => {
+        dispatch(ActionCreator.setError(error));
       });
   },
 
   logIn: (data) => (dispatch, _getState, api) => {
     return api.post(`/login`, data)
       .then((response) => {
-        dispatch(ActionCreator.authorize(response.data));
-        dispatch(ActionCreator.requireAuthorization(true));
+        const userData = mapUser(response.data);
+        dispatch(ActionCreator.setUserData(userData));
+        dispatch(ActionCreator.setIsAuthorized(true));
       })
-      .catch((err) => {
-        throw err;
+      .catch((error) => {
+        dispatch(ActionCreator.setError(error));
       });
   },
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.AUTHORIZE: return Object.assign({}, state, {
-      user: {
-        id: action.payload.id,
-        email: action.payload.email,
-        name: action.payload.name,
-        avatarUrl: action.payload.avatar_url,
-        isPro: action.payload.is_pro,
-      }
+    case ActionType.SET_USER_DATA: return Object.assign({}, state, {
+      user: action.payload,
     });
 
-    case ActionType.REQUIRED_AUTHORIZATION: return Object.assign({}, state, {
-      isAuthorizationRequired: action.payload,
+    case ActionType.SET_IS_AUTHORIZED: return Object.assign({}, state, {
+      isAuthorized: action.payload,
     });
   }
 

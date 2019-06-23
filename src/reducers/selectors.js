@@ -13,8 +13,12 @@ export const getUser = (state) => (
   state[NameSpace.USER].user
 );
 
-export const getIsAuthorizationRequired = (state) => (
-  state[NameSpace.USER].isAuthorizationRequired
+export const getIsAuthorized = (state) => (
+  state[NameSpace.USER].isAuthorized
+);
+
+export const getAuthorizationError = (state) => (
+  state[NameSpace.USER].error
 );
 
 export const getCities = createSelector(

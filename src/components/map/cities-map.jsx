@@ -22,6 +22,7 @@ export class CitiesMap extends React.PureComponent {
 
   componentWillUnmount() {
     this._map.remove();
+    this._map = null;
   }
 
   _createMap() {

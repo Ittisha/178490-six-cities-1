@@ -1,11 +1,11 @@
 import axios from "axios";
-import {ActionCreator} from "./reducers/user/user";
 
+export const BASE_URL = `https://es31-server.appspot.com/six-cities`;
 const TIME_OUT = 5000;
 
-export const createApi = (dispatch) => {
+export const createApi = (onFailCallback) => {
   const api = axios.create({
-    baseURL: `https://es31-server.appspot.com/six-cities`,
+    baseURL: BASE_URL,
     timeout: TIME_OUT,
     withCredentials: true
   });
@@ -14,7 +14,7 @@ export const createApi = (dispatch) => {
 
   const onFail = (err) => {
     if (err.response.status === 403) {
-      dispatch(ActionCreator.requireAuthorizationStatus(true));
+      onFailCallback();
     }
     return err;
   };

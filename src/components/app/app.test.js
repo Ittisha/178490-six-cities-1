@@ -22,7 +22,7 @@ it(`App is rendered properly`, () => {
         citiesCoords={citiesCoords}
         onAppMounting={() => {}}
         handleCityChange={() => {}}
-        isAuthorizationRequired={false}
+        isAuthorized={false}
       />);
 
   expect(tree).toMatchSnapshot();
