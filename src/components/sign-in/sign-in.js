@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Header from '../header/header';
 import userPropTypes from '../../props/user';
 
 export const SignIn = (props) => {
@@ -12,7 +11,6 @@ export const SignIn = (props) => {
   } = props;
 
   return <div className="page page--gray page--login">
-    <Header />
     <main className="page__main page__main--login">
       <div className="page__login-container container">
         <section className="login">

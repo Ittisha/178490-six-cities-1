@@ -1,9 +1,7 @@
 import * as React from 'react';
-import Header from '../header/header';
 
 export const Favourites = () => {
-  return (<div className="page">
-    <Header />
+  return (<React.Fragment>
     <main className="page__main page__main--favorites">
       <div className="page__favorites-container container">
         <section className="favorites">
@@ -130,6 +128,6 @@ export const Favourites = () => {
         </section>
       </div>
     </main>
-  </div>
+  </React.Fragment>
   );
 };

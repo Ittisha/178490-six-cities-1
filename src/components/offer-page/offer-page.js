@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 import {getNearestOffers, getOffer} from '../../reducers/selectors';
 import offerPropTypes from '../../props/apartment';
-import Header from '../header/header';
 import {addPluralS} from '../../utils/addPluralS';
 import {APARTMENT_TYPES} from '../../consts';
+import {getRatingPercent} from '../../utils/get-rating-percent';
 
 const MAX_PHOTO_NUMBER = 6;
 
@@ -23,6 +23,7 @@ export const OfferPage = ({offer}) => {
     goods,
     host,
     description,
+    rating,
   } = offer;
 
   const wordBedroomForm = addPluralS(bedrooms, `Bedroom`);
@@ -36,7 +37,6 @@ export const OfferPage = ({offer}) => {
 
   return (
     <React.Fragment>
-      <Header />
       <main className="page__main page__main--property">
         <section className="property">
           <div className="property__gallery-container container">
@@ -65,10 +65,10 @@ export const OfferPage = ({offer}) => {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: `96%`}}></span>
+                  <span style={{width: `${getRatingPercent(rating)}`}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="property__rating-value rating__value">4.8</span>
+                <span className="property__rating-value rating__value">{rating}</span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
