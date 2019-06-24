@@ -2,10 +2,10 @@
 
 exports[`Card component is rendered properly 1`] = `
 <div
-  className="cities__places-list places__list tabs__content"
+  className="places__list near-places__list"
 >
   <article
-    className="cities__place-card place-card"
+    className="place-card near-places__card"
   >
     <div
       className="place-card__mark"
@@ -80,7 +80,7 @@ exports[`Card component is rendered properly 1`] = `
           <span
             style={
               Object {
-                "width": "93%",
+                "width": "100%",
               }
             }
           />
@@ -107,7 +107,7 @@ exports[`Card component is rendered properly 1`] = `
     </div>
   </article>
   <article
-    className="cities__place-card place-card"
+    className="place-card near-places__card"
   >
     <div
       className="cities__image-wrapper place-card__image-wrapper"
@@ -202,7 +202,7 @@ exports[`Card component is rendered properly 1`] = `
     </div>
   </article>
   <article
-    className="cities__place-card place-card"
+    className="place-card near-places__card"
   >
     <div
       className="cities__image-wrapper place-card__image-wrapper"
@@ -297,7 +297,7 @@ exports[`Card component is rendered properly 1`] = `
     </div>
   </article>
   <article
-    className="cities__place-card place-card"
+    className="place-card near-places__card"
   >
     <div
       className="cities__image-wrapper place-card__image-wrapper"
@@ -392,7 +392,7 @@ exports[`Card component is rendered properly 1`] = `
     </div>
   </article>
   <article
-    className="cities__place-card place-card"
+    className="place-card near-places__card"
   >
     <div
       className="cities__image-wrapper place-card__image-wrapper"
@@ -460,7 +460,7 @@ exports[`Card component is rendered properly 1`] = `
           <span
             style={
               Object {
-                "width": "90%",
+                "width": "100%",
               }
             }
           />

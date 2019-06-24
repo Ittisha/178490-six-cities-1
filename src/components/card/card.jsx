@@ -13,7 +13,7 @@ export class Card extends React.PureComponent {
   }
 
   render() {
-    const {apartment} = this.props;
+    const {apartment, cardClass} = this.props;
     const {
       isPremium,
       isInBookmarks,
@@ -29,7 +29,7 @@ export class Card extends React.PureComponent {
       : `place-card__bookmark-button button`;
     const bookmarkHiddenText = isInBookmarks ? `In bookmarks` : `To bookmarks`;
     return (
-      <article className="cities__place-card place-card">
+      <article className={`place-card ${cardClass}`}>
         {isPremium && (
           <div className="place-card__mark">
             <span>Premium</span>
@@ -69,7 +69,9 @@ export class Card extends React.PureComponent {
 
   _handleImgClick() {
     const {apartment, onImgClick} = this.props;
-    onImgClick(apartment);
+    if (typeof onImgClick === `function`) {
+      onImgClick(apartment);
+    }
   }
 }
 
@@ -84,5 +86,6 @@ Card.propTypes = {
     price: PropTypes.number.isRequired,
     coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
   }),
-  onImgClick: PropTypes.func.isRequired,
+  onImgClick: PropTypes.func,
+  cardClass: PropTypes.string.isRequired,
 };

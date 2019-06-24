@@ -9,7 +9,11 @@ const mockApartment = OFFERS[0];
 it(`Card component is rendered properly`, () => {
   const tree = renderer
     .create(<StaticRouter>
-      <Card apartment={mockApartment} onImgClick={() => {}} />
+      <Card
+        apartment={mockApartment}
+        onImgClick={() => {}}
+        cardClass={`near-places__card`}
+      />
     </StaticRouter>)
     .toJSON();
 

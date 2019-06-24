@@ -16,6 +16,7 @@ describe(`e2e Card component test`, () => {
         <Card
           apartment={mockApartment}
           onImgClick={clickHandler}
+          cardClass="near-places__card"
         />
     );
 
@@ -31,6 +32,7 @@ describe(`e2e Card component test`, () => {
         <Card
           apartment={mockApartment}
           onImgClick={clickHandler}
+          cardClass="near-places__card"
         />
     );
 

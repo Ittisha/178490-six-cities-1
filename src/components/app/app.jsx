@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {Switch, Route, Redirect} from 'react-router-dom';
 
 import {Main} from '../main/main';
+import Header from '../header/header';
 import {SignIn} from '../sign-in/sign-in';
 import {Favourites} from '../favorites/favorites';
 import OfferPage from '../offer-page/offer-page';
@@ -56,6 +57,7 @@ export class App extends React.PureComponent {
 
     return (
       <React.Fragment>
+        <Header />
         <Switch>
           <Route path="/" exact component={MainWithPropsAndActiveItem} />
           <Route path="/login" render={redirectSignInPage} />

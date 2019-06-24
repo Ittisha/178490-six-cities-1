@@ -2,15 +2,15 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 
-import {history} from '../../history';
 import ApartmentPropsShape from '../../props/apartment';
+import ReactResizeDetector from 'react-resize-detector';
 
 const DEFAULT_ICON = {
-  iconUrl: `img/map-pin.svg`,
+  iconUrl: `/img/map-pin.svg`,
   iconSize: [27, 39],
 };
 const ACTIVE_ICON = {
-  iconUrl: `img/active-pin.svg`,
+  iconUrl: `/img/active-pin.svg`,
   iconSize: [27, 39],
 };
 
@@ -22,27 +22,13 @@ export class CitiesMap extends React.PureComponent {
 
   render() {
     return (
-      <div id="map" style={{height: `100%`}} />
+      <div id="map" style={{height: `100%`}} >
+        <ReactResizeDetector handleHeight handleWidth onResize={this._handleHeightResize.bind(this)}/>
+      </div>
     );
   }
 
   componentDidMount() {
-    this._createMap();
-    this._renderMarkers();
-    this._renderActiveMarker();
-  }
-
-  componentDidUpdate() {
-    this._renderMarkers();
-    this._renderActiveMarker();
-  }
-
-  componentWillUnmount() {
-    this._map.remove();
-    this._map = null;
-  }
-
-  _createMap() {
     const {city} = this.props;
     this._map = leaflet.map(`map`, {
       center: city.coords,
@@ -56,27 +42,48 @@ export class CitiesMap extends React.PureComponent {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
       .addTo(this._map);
+    this._setMapCenter();
+    this._renderMarkers();
+    this._renderActiveMarker();
+  }
 
+  componentDidUpdate() {
+    this._removeMarkers();
+    this._setMapCenter();
+    this._renderMarkers();
+    this._renderActiveMarker();
+  }
 
+  componentWillUnmount() {
+    this._map.remove();
+    this._map = null;
+  }
+
+  _setMapCenter() {
+    const {city} = this.props;
+    this._map.setView(city.coords, city.zoom);
   }
 
   _renderMarkers() {
-    const {city, apartmentsCoords} = this.props;
+    const {apartmentsCoords} = this.props;
     const icon = leaflet.icon(DEFAULT_ICON);
-    this._map.setView(city.coords, city.zoom);
-
     let markers = [];
 
     apartmentsCoords.forEach((offer) => {
       const marker = leaflet
-        .marker(offer.coordinates, {icon})
-        .on(`click`, () => history.push(`/offer/${offer.id}`));
+        .marker(offer.coordinates, {icon});
       this._markers[offer.id] = marker;
       markers.push(marker);
     });
 
     this._markersLayer = leaflet.layerGroup(markers);
     this._markersLayer.addTo(this._map);
+  }
+
+  _removeMarkers() {
+    this._markersLayer.clearLayers();
+    this._markersLayer = null;
+    this._markers = {};
   }
 
   _renderActiveMarker() {
@@ -87,6 +94,10 @@ export class CitiesMap extends React.PureComponent {
     }
 
     this._markers[activeItem.id].setIcon(leaflet.icon(ACTIVE_ICON));
+  }
+
+  _handleHeightResize() {
+    this._map.invalidateSize();
   }
 }
 

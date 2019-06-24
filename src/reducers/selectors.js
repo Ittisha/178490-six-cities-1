@@ -15,6 +15,10 @@ export const getUser = (state) => (
   state[NameSpace.USER].user
 );
 
+export const getReviews = (state) => (
+  state[NameSpace.REVIEWS].reviews
+);
+
 export const getIsAuthorized = (state) => (
   state[NameSpace.USER].isAuthorized
 );

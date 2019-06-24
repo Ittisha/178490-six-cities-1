@@ -4,13 +4,16 @@ import PropTypes from 'prop-types';
 
 import {getNearestOffers, getOffer} from '../../reducers/selectors';
 import offerPropTypes from '../../props/apartment';
-import Header from '../header/header';
 import {addPluralS} from '../../utils/addPluralS';
 import {APARTMENT_TYPES} from '../../consts';
+import {getRatingPercent} from '../../utils/get-rating-percent';
+import ReviewSection from '../review-section/review-section';
+import {CitiesMap} from '../cities-map/cities-map';
+import {CardList} from '../card-list/card-list';
 
 const MAX_PHOTO_NUMBER = 6;
 
-export const OfferPage = ({offer}) => {
+export const OfferPage = ({offer, nearestOffers}) => {
   const {
     images,
     title,
@@ -23,7 +26,19 @@ export const OfferPage = ({offer}) => {
     goods,
     host,
     description,
+    rating,
+    cityName,
+    cityCoords,
+    cityZoom,
   } = offer;
+
+  const city = {
+    name: cityName,
+    coords: cityCoords,
+    zoom: cityZoom,
+  };
+
+  const apartmentsCoords = [...nearestOffers, offer].map(({id: idCurrent, coordinates, zoom}) => ({id: idCurrent, coordinates, zoom}));
 
   const wordBedroomForm = addPluralS(bedrooms, `Bedroom`);
   const wordAdultForm = addPluralS(maxAdults, `adult`);
@@ -36,7 +51,6 @@ export const OfferPage = ({offer}) => {
 
   return (
     <React.Fragment>
-      <Header />
       <main className="page__main page__main--property">
         <section className="property">
           <div className="property__gallery-container container">
@@ -65,10 +79,10 @@ export const OfferPage = ({offer}) => {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: `96%`}}></span>
+                  <span style={{width: `${getRatingPercent(rating)}`}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="property__rating-value rating__value">4.8</span>
+                <span className="property__rating-value rating__value">{rating}</span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
@@ -119,15 +133,25 @@ export const OfferPage = ({offer}) => {
                   </p>
                 </div>
               </div>
-
+              <ReviewSection offerId={id} />
             </div>
           </div>
-
+          <section className="property__map map">
+            <CitiesMap
+              apartmentsCoords={apartmentsCoords}
+              city={city}
+              activeItem={offer}
+            />
+          </section>
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-
+            <CardList
+              apartments={nearestOffers}
+              cardListClass={`near-places__list`}
+              cardClass={`near-places__card`}
+            />
           </section>
         </div>
       </main>
