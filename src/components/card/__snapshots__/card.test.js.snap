@@ -2,7 +2,7 @@
 
 exports[`Card component is rendered properly 1`] = `
 <article
-  className="cities__place-card place-card"
+  className="place-card near-places__card"
 >
   <div
     className="place-card__mark"
@@ -77,7 +77,7 @@ exports[`Card component is rendered properly 1`] = `
         <span
           style={
             Object {
-              "width": "93%",
+              "width": "100%",
             }
           }
         />

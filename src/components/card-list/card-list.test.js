@@ -11,6 +11,8 @@ it(`Card component is rendered properly`, () => {
       <CardList
         apartments={OFFERS}
         setActiveOffer={() => {}}
+        cardListClass={`near-places__list`}
+        cardClass={`near-places__card`}
       />
     </StaticRouter>)
     .toJSON();

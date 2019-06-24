@@ -45,7 +45,12 @@ export const Main = ({apartments, city, cities, citiesCoords, handleCityChange, 
               </ul>
             </form>
             <div className="cities__places-list places__list tabs__content">
-              <CardList apartments={apartments} setActiveOffer={setActiveItem}/>
+              <CardList
+                apartments={apartments}
+                setActiveOffer={setActiveItem}
+                cardListClass="cities__places-list tabs__content"
+                cardClass="cities__place-card"
+              />
             </div>
           </section>
           <div className="cities__right-section">

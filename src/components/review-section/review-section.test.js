@@ -1,13 +1,16 @@
 import * as React from 'react';
 import renderer from 'react-test-renderer';
 
-import {ReviewsList} from './reviews-list';
+import {ReviewSection} from './review-section';
 import {mockReviews} from '../../mocks/reviews';
 
 it(`Review correctly renders`, () => {
   const tree = renderer
-    .create(<ReviewsList reviews={mockReviews} />)
-    .toJSON();
+    .create(<ReviewSection
+      offerId={1}
+      loadReviews={() => {}}
+      reviews={mockReviews}
+    />).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

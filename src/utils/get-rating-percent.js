@@ -1,3 +1,3 @@
 export const getRatingPercent = (rating) => {
-  return `${(rating / 5 * 100).toFixed()}%`;
+  return `${((Math.round(rating) / 5) * 100)}%`;
 };

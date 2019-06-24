@@ -2,9 +2,13 @@ import * as React from 'react';
 import {getRatingPercent} from '../../utils/get-rating-percent';
 import PropTypes from "prop-types";
 import userPropTypes from '../../props/user';
-
+import {MONTHS, ISO_END_DAY_ORDER_NUMBER, ISO_END_YEAR_ORDER_NUMBER} from '../../consts';
 
 export const Review = ({user, rating, comment, date}) => {
+  const dateTime = date.slice(0, ISO_END_DAY_ORDER_NUMBER);
+  const year = date.slice(0, ISO_END_YEAR_ORDER_NUMBER);
+  const month = MONTHS[new Date(date).getMonth()];
+
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
@@ -23,15 +27,15 @@ export const Review = ({user, rating, comment, date}) => {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{width: `${getRatingPercent(rating)}%`}}></span>
+            <span style={{width: `${getRatingPercent(rating)}`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <p className="reviews__text">
           {comment}
         </p>
-        <time className="reviews__time" dateTime={date}>
-          {date}
+        <time className="reviews__time" dateTime={dateTime}>
+          {`${month} ${year}`}
         </time>
       </div>
     </li>

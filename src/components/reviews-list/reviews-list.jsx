@@ -13,6 +13,7 @@ export const ReviewsList = ({reviews}) => {
           id={review.id}
           comment={review.comment}
           date={review.date}
+          rating={review.rating}
         />
       ))}
     </ul>
