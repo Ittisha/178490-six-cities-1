@@ -20,7 +20,7 @@ const citiesZoom = {
 it(`App is rendered properly`, () => {
   const tree = shallow(
       <App
-        offers={OFFERS}
+        apartments={OFFERS}
         city={INIT_CITY}
         cities={cities}
         citiesCoords={citiesCoords}

@@ -68,7 +68,9 @@ export const getNearestOffers = (id, number) => createSelector(
       if (!offers && !offers.length) {
         return [];
       }
-      const currentOffer = offers.find((offer) => offer.id === Number(id));
+      const idNumber = Number(id);
+
+      const currentOffer = offers.find((offer) => offer.id === idNumber);
 
       return offers
         .map((offer) => {
@@ -76,5 +78,6 @@ export const getNearestOffers = (id, number) => createSelector(
           return offer;
         })
         .sort((offer1, offer2) => offer1.distance - offer2.distance)
+        .filter((offer) => offer.id !== idNumber)
         .slice(1, number + 1);
     });
