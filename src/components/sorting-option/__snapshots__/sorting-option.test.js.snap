@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlaceSortingType correctly renders 1`] = `
+<li
+  className="places__option places__option--active"
+  onClick={[Function]}
+  tabIndex={0}
+/>
+`;

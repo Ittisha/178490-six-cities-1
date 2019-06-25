@@ -10,6 +10,7 @@ import OfferPage from '../offer-page/offer-page';
 import withAuthorization from '../../hoc/with-authorization/with-authorization';
 import {withPrivateRoutes} from '../../hoc/with-private-routes/with-private-routes';
 import {withActiveItem} from '../../hoc/with-active-item/with-active-item';
+import {withSortedItems} from '../../hoc/with-sorted-items/with-sorted-items';
 import {
   getCities,
   getCitiesCoords,
@@ -25,12 +26,12 @@ import ApartmentPropsShape from '../../props/apartment';
 
 const SignInWithAuthorization = withAuthorization(SignIn);
 const FavouritesWithPrivateRoutes = withPrivateRoutes(Favourites);
-const MainWithActiveItem = withActiveItem(Main);
+const MainWithActiveItem = withActiveItem(withSortedItems(Main));
 
 export class App extends React.PureComponent {
   render() {
     const {
-      offers,
+
       city,
       cities,
       handleCityChange,
@@ -41,7 +42,7 @@ export class App extends React.PureComponent {
 
     const MainWithPropsAndActiveItem = () => {
       return (<MainWithActiveItem
-        apartments={offers}
+
         city={city}
         cities={cities}
         handleCityChange={handleCityChange}
@@ -70,7 +71,7 @@ export class App extends React.PureComponent {
 }
 
 App.propTypes = {
-  offers: PropTypes.arrayOf(ApartmentPropsShape).isRequired,
+  apartments: PropTypes.arrayOf(ApartmentPropsShape).isRequired,
   city: PropTypes.shape({
     name: PropTypes.string.isRequired,
     coords: PropTypes.arrayOf(PropTypes.number).isRequired,
@@ -88,7 +89,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   cities: getCities(state),
   citiesCoords: getCitiesCoords(state),
   citiesZoom: getCitiesZoom(state),
-  offers: getCityOffers(state),
+  apartments: getCityOffers(state),
   isAuthorized: getIsAuthorized(state),
 });
 
