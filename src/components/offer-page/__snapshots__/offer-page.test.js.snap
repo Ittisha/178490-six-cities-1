@@ -1,3 +1,327 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`OfferPage component is rendered properly 1`] = `ShallowWrapper {}`;
+exports[`OfferPage component is rendered properly 1`] = `
+<React.Fragment>
+  <main
+    className="page__main page__main--property"
+  >
+    <section
+      className="property"
+    >
+      <div
+        className="property__gallery-container container"
+      >
+        <div
+          className="property__gallery"
+        >
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Beautiful & luxurious apartment at great location"
+              className="property__image"
+              src="img/apartment-01.jpg"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="property__container container"
+      >
+        <div
+          className="property__wrapper"
+        >
+          <div
+            className="property__mark"
+          >
+            <span>
+              Premium
+            </span>
+          </div>
+          <div
+            className="property__name-wrapper"
+          >
+            <h1
+              className="property__name"
+            >
+              Beautiful & luxurious apartment at great location
+            </h1>
+            <button
+              className="property__bookmark-button button"
+              type="button"
+            >
+              <svg
+                className="property__bookmark-icon"
+                height="33"
+                width="31"
+              >
+                <use
+                  xlinkHref="#icon-bookmark"
+                />
+              </svg>
+              <span
+                className="visually-hidden"
+              >
+                To bookmarks
+              </span>
+            </button>
+          </div>
+          <div
+            className="property__rating rating"
+          >
+            <div
+              className="property__stars rating__stars"
+            >
+              <span
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              />
+              <span
+                className="visually-hidden"
+              >
+                Rating
+              </span>
+            </div>
+            <span
+              className="property__rating-value rating__value"
+            >
+              4.65
+            </span>
+          </div>
+          <ul
+            className="property__features"
+          >
+            <li
+              className="property__feature property__feature--entire"
+            />
+            <li
+              className="property__feature property__feature--bedrooms"
+            >
+              2 Bedrooms
+            </li>
+            <li
+              className="property__feature property__feature--adults"
+            >
+              Max 
+              4 adults
+            </li>
+          </ul>
+          <div
+            className="property__price"
+          >
+            <b
+              className="property__price-value"
+            >
+              €
+              120
+            </b>
+            <span
+              className="property__price-text"
+            >
+               night
+            </span>
+          </div>
+          <div
+            className="property__inside"
+          >
+            <h2
+              className="property__inside-title"
+            >
+              What's inside
+            </h2>
+            <ul
+              className="property__inside-list"
+            >
+              <li
+                className="property__inside-item"
+              >
+                Something
+              </li>
+            </ul>
+          </div>
+          <div
+            className="property__host"
+          >
+            <h2
+              className="property__host-title"
+            >
+              Meet the host
+            </h2>
+            <div
+              className="property__host-user user"
+            >
+              <div
+                className="property__avatar-wrapper user__avatar-wrapper property__avatar-wrapper--pro"
+              >
+                <img
+                  alt="Host avatar"
+                  className="property__avatar user__avatar"
+                  height="74"
+                  src="/apartment-01.jpg"
+                  width="74"
+                />
+              </div>
+              <span
+                className="property__user-name"
+              >
+                Name
+              </span>
+              <span
+                className="property__user-status"
+              >
+                Pro
+              </span>
+            </div>
+            <div
+              className="property__description"
+            >
+              <p
+                className="property__text"
+              >
+                description
+              </p>
+            </div>
+          </div>
+          <Memo(ConnectFunction)
+            offerId={1}
+          />
+        </div>
+      </div>
+      <section
+        className="property__map map"
+      >
+        <CitiesMap
+          activeItem={
+            Object {
+              "bedrooms": 2,
+              "cityCoords": Array [
+                52.38333,
+                4.9,
+              ],
+              "cityName": "Amsterdam",
+              "cityZoom": 15,
+              "coordinates": Array [
+                52.3909553943508,
+                4.85309666406198,
+              ],
+              "description": "description",
+              "goods": Array [
+                "Something",
+              ],
+              "host": Object {
+                "avatar": "apartment-01.jpg",
+                "id": 2,
+                "isPro": true,
+                "name": "Name",
+              },
+              "id": 1,
+              "images": Array [
+                "img/apartment-01.jpg",
+              ],
+              "isInBookmarks": false,
+              "isPremium": true,
+              "maxAdults": 4,
+              "photoUrl": "img/apartment-01.jpg",
+              "price": 120,
+              "rating": 4.65,
+              "title": "Beautiful & luxurious apartment at great location",
+              "type": "Apartment",
+              "zoom": 16,
+            }
+          }
+          apartmentsCoords={
+            Array [
+              Object {
+                "coordinates": Array [
+                  52.3809553943508,
+                  4.939309666406198,
+                ],
+                "id": 4,
+                "zoom": 16,
+              },
+              Object {
+                "coordinates": Array [
+                  52.3909553943508,
+                  4.85309666406198,
+                ],
+                "id": 1,
+                "zoom": 16,
+              },
+            ]
+          }
+          city={
+            Object {
+              "coords": Array [
+                52.38333,
+                4.9,
+              ],
+              "name": "Amsterdam",
+              "zoom": 15,
+            }
+          }
+        />
+      </section>
+    </section>
+    <div
+      className="container"
+    >
+      <section
+        className="near-places places"
+      >
+        <h2
+          className="near-places__title"
+        >
+          Other places in the neighbourhood
+        </h2>
+        <CardList
+          apartments={
+            Array [
+              Object {
+                "bedrooms": 2,
+                "cityCoords": Array [
+                  52.38333,
+                  4.9,
+                ],
+                "cityName": "Amsterdam",
+                "cityZoom": 15,
+                "coordinates": Array [
+                  52.3809553943508,
+                  4.939309666406198,
+                ],
+                "description": "description",
+                "goods": Array [
+                  "Something",
+                ],
+                "host": Object {
+                  "avatar": "apartment-01.jpg",
+                  "id": 2,
+                  "isPro": true,
+                  "name": "Name",
+                },
+                "id": 4,
+                "images": Array [
+                  "img/apartment-01.jpg",
+                ],
+                "isInBookmarks": false,
+                "isPremium": false,
+                "maxAdults": 4,
+                "photoUrl": "img/apartment-03.jpg",
+                "price": 180,
+                "rating": 4,
+                "title": "Nice, cozy, warm big bed apartment",
+                "type": "Apartment",
+                "zoom": 16,
+              },
+            ]
+          }
+          cardClass="near-places__card"
+          cardListClass="near-places__list"
+        />
+      </section>
+    </div>
+  </main>
+</React.Fragment>
+`;
