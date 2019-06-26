@@ -1,3 +1,4 @@
+import {toast} from 'react-toastify';
 import {mapUser} from '../../mappers/map-user';
 
 const initialState = {
@@ -40,24 +41,26 @@ const Operation = {
   checkAuthorization: () => (dispatch, _getState, api) => {
     return api.get(`/login`)
       .then((response) => {
-        const userData = mapUser(response.data);
-        dispatch(ActionCreator.setUserData(userData));
-        dispatch(ActionCreator.setIsAuthorized(true));
-      })
-      .catch((error) => {
-        dispatch(ActionCreator.setError(error));
+        if (response.status === 200) {
+          const userData = mapUser(response.data);
+          dispatch(ActionCreator.setUserData(userData));
+          dispatch(ActionCreator.setIsAuthorized(true));
+          return;
+        }
+        toast.error(response.response.data.error);
       });
   },
 
   logIn: (data) => (dispatch, _getState, api) => {
     return api.post(`/login`, data)
       .then((response) => {
-        const userData = mapUser(response.data);
-        dispatch(ActionCreator.setUserData(userData));
-        dispatch(ActionCreator.setIsAuthorized(true));
-      })
-      .catch((error) => {
-        dispatch(ActionCreator.setError(error));
+        if (response.status === 200) {
+          const userData = mapUser(response.data);
+          dispatch(ActionCreator.setUserData(userData));
+          dispatch(ActionCreator.setIsAuthorized(true));
+          return;
+        }
+        toast.error(response.response.data.error);
       });
   },
 };

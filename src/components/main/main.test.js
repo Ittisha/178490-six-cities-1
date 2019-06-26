@@ -1,11 +1,9 @@
 import * as React from 'react';
-import {shallow, configure} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import ShallowRenderer from 'react-test-renderer/shallow';
 import {Main} from './main';
 import {OFFERS} from '../../mocks/offers';
 import {INIT_CITY} from '../../mocks/init-city';
 
-configure({adapter: new Adapter()});
 
 const cities = [`Amsterdam`, `Paris`];
 const citiesCoords = {
@@ -18,7 +16,8 @@ const citiesZoom = {
 };
 
 it(`Main component is rendered properly`, () => {
-  const tree = shallow(
+  const renderer = new ShallowRenderer();
+  const tree = renderer.render(
       <Main
         apartments={OFFERS}
         city={INIT_CITY}
@@ -27,6 +26,7 @@ it(`Main component is rendered properly`, () => {
         citiesZoom={citiesZoom}
         handleCityChange={() => {}}
         setActiveItem={() => {}}
+        onOptionChange={() => {}}
       />);
 
   expect(tree).toMatchSnapshot();

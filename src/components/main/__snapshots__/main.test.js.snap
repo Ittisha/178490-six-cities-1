@@ -1,3 +1,329 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Main component is rendered properly 1`] = `ShallowWrapper {}`;
+exports[`Main component is rendered properly 1`] = `
+<main
+  className="page__main page__main--index false"
+>
+  <h1
+    className="visually-hidden"
+  >
+    Cities
+  </h1>
+  <CityList
+    cities={
+      Array [
+        "Amsterdam",
+        "Paris",
+      ]
+    }
+    citiesCoords={
+      Object {
+        "Amsterdam": Array [
+          52.38333,
+          4.9,
+        ],
+        "Paris": Array [
+          48.864716,
+          2.349014,
+        ],
+      }
+    }
+    citiesZoom={
+      Object {
+        "Amsterdam": 17,
+        "Paris": 15,
+      }
+    }
+    city="Amsterdam"
+    handleCityChange={[Function]}
+  />
+  <div
+    className="cities__places-wrapper"
+  >
+    <div
+      className="cities__places-container false container"
+    >
+      <section
+        className="cities__places places"
+      >
+        <h2
+          className="visually-hidden"
+        >
+          Places
+        </h2>
+        <b
+          className="places__found"
+        >
+          5 places to stay in Amsterdam
+        </b>
+        <WithActiveItem
+          onOptionChange={[Function]}
+        />
+        <div
+          className="cities__places-list places__list tabs__content"
+        >
+          <CardList
+            apartments={
+              Array [
+                Object {
+                  "bedrooms": 2,
+                  "cityCoords": Array [
+                    52.38333,
+                    4.9,
+                  ],
+                  "cityName": "Amsterdam",
+                  "cityZoom": 15,
+                  "coordinates": Array [
+                    52.3909553943508,
+                    4.85309666406198,
+                  ],
+                  "description": "description",
+                  "goods": Array [
+                    "Something",
+                  ],
+                  "host": Object {
+                    "avatar": "apartment-01.jpg",
+                    "id": 2,
+                    "isPro": true,
+                    "name": "Name",
+                  },
+                  "id": 1,
+                  "images": Array [
+                    "img/apartment-01.jpg",
+                  ],
+                  "isInBookmarks": false,
+                  "isPremium": true,
+                  "maxAdults": 4,
+                  "photoUrl": "img/apartment-01.jpg",
+                  "price": 120,
+                  "rating": 4.65,
+                  "title": "Beautiful & luxurious apartment at great location",
+                  "type": "Apartment",
+                  "zoom": 16,
+                },
+                Object {
+                  "bedrooms": 2,
+                  "cityCoords": Array [
+                    52.38333,
+                    4.9,
+                  ],
+                  "cityName": "Amsterdam",
+                  "cityZoom": 15,
+                  "coordinates": Array [
+                    52.369553943508,
+                    4.85309666406198,
+                  ],
+                  "description": "description",
+                  "goods": Array [
+                    "Something",
+                  ],
+                  "host": Object {
+                    "avatar": "apartment-01.jpg",
+                    "id": 2,
+                    "isPro": true,
+                    "name": "Name",
+                  },
+                  "id": 2,
+                  "images": Array [
+                    "img/apartment-01.jpg",
+                  ],
+                  "isInBookmarks": true,
+                  "isPremium": false,
+                  "maxAdults": 4,
+                  "photoUrl": "img/room.jpg",
+                  "price": 80,
+                  "rating": 4,
+                  "title": "Wood and stone place",
+                  "type": "Private room",
+                  "zoom": 16,
+                },
+                Object {
+                  "bedrooms": 2,
+                  "cityCoords": Array [
+                    52.38333,
+                    4.9,
+                  ],
+                  "cityName": "Amsterdam",
+                  "cityZoom": 15,
+                  "coordinates": Array [
+                    52.3909553943508,
+                    4.929309666406198,
+                  ],
+                  "description": "description",
+                  "goods": Array [
+                    "Something",
+                  ],
+                  "host": Object {
+                    "avatar": "apartment-01.jpg",
+                    "id": 2,
+                    "isPro": true,
+                    "name": "Name",
+                  },
+                  "id": 3,
+                  "images": Array [
+                    "img/apartment-01.jpg",
+                  ],
+                  "isInBookmarks": false,
+                  "isPremium": false,
+                  "maxAdults": 4,
+                  "photoUrl": "img/apartment-02.jpg",
+                  "price": 132,
+                  "rating": 4,
+                  "title": "Canal View Prinsengracht",
+                  "type": "Apartment",
+                  "zoom": 16,
+                },
+                Object {
+                  "bedrooms": 2,
+                  "cityCoords": Array [
+                    52.38333,
+                    4.9,
+                  ],
+                  "cityName": "Amsterdam",
+                  "cityZoom": 15,
+                  "coordinates": Array [
+                    52.3809553943508,
+                    4.939309666406198,
+                  ],
+                  "description": "description",
+                  "goods": Array [
+                    "Something",
+                  ],
+                  "host": Object {
+                    "avatar": "apartment-01.jpg",
+                    "id": 2,
+                    "isPro": true,
+                    "name": "Name",
+                  },
+                  "id": 4,
+                  "images": Array [
+                    "img/apartment-01.jpg",
+                  ],
+                  "isInBookmarks": false,
+                  "isPremium": false,
+                  "maxAdults": 4,
+                  "photoUrl": "img/apartment-03.jpg",
+                  "price": 180,
+                  "rating": 4,
+                  "title": "Nice, cozy, warm big bed apartment",
+                  "type": "Apartment",
+                  "zoom": 16,
+                },
+                Object {
+                  "bedrooms": 2,
+                  "cityCoords": Array [
+                    48.864716,
+                    2.349014,
+                  ],
+                  "cityName": "Paris",
+                  "cityZoom": 15,
+                  "coordinates": Array [
+                    48.86679,
+                    2.37852,
+                  ],
+                  "description": "description",
+                  "goods": Array [
+                    "Something",
+                  ],
+                  "host": Object {
+                    "avatar": "apartment-01.jpg",
+                    "id": 2,
+                    "isPro": true,
+                    "name": "Name",
+                  },
+                  "id": 5,
+                  "images": Array [
+                    "img/apartment-01.jpg",
+                  ],
+                  "isInBookmarks": false,
+                  "isPremium": false,
+                  "maxAdults": 4,
+                  "photoUrl": "img/apartment-03.jpg",
+                  "price": 100,
+                  "rating": 4.5,
+                  "title": "Nice, cozy, warm big bed apartment",
+                  "type": "Apartment",
+                  "zoom": 16,
+                },
+              ]
+            }
+            cardClass="cities__place-card"
+            cardListClass="cities__places-list tabs__content"
+            setActiveOffer={[Function]}
+          />
+        </div>
+      </section>
+      <div
+        className="cities__right-section"
+      >
+        <section
+          className="cities__map map"
+        >
+          <CitiesMap
+            apartmentsCoords={
+              Array [
+                Object {
+                  "coordinates": Array [
+                    52.3909553943508,
+                    4.85309666406198,
+                  ],
+                  "id": 1,
+                  "zoom": 16,
+                },
+                Object {
+                  "coordinates": Array [
+                    52.369553943508,
+                    4.85309666406198,
+                  ],
+                  "id": 2,
+                  "zoom": 16,
+                },
+                Object {
+                  "coordinates": Array [
+                    52.3909553943508,
+                    4.929309666406198,
+                  ],
+                  "id": 3,
+                  "zoom": 16,
+                },
+                Object {
+                  "coordinates": Array [
+                    52.3809553943508,
+                    4.939309666406198,
+                  ],
+                  "id": 4,
+                  "zoom": 16,
+                },
+                Object {
+                  "coordinates": Array [
+                    48.86679,
+                    2.37852,
+                  ],
+                  "id": 5,
+                  "zoom": 16,
+                },
+              ]
+            }
+            citiesZoom={
+              Object {
+                "Amsterdam": 17,
+                "Paris": 15,
+              }
+            }
+            city={
+              Object {
+                "coords": Array [
+                  52.38333,
+                  4.9,
+                ],
+                "name": "Amsterdam",
+                "zoom": 12,
+              }
+            }
+          />
+        </section>
+      </div>
+    </div>
+  </div>
+</main>
+`;
