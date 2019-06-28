@@ -4,6 +4,7 @@ import leaflet from 'leaflet';
 
 import ApartmentPropsShape from '../../props/apartment';
 import ReactResizeDetector from 'react-resize-detector';
+import {history} from '../../history';
 
 const DEFAULT_ICON = {
   iconUrl: `/img/map-pin.svg`,
@@ -71,7 +72,8 @@ export class CitiesMap extends React.PureComponent {
 
     apartmentsCoords.forEach((offer) => {
       const marker = leaflet
-        .marker(offer.coordinates, {icon});
+        .marker(offer.coordinates, {icon})
+        .on(`click`, () => history.push(`/offer/${offer.id}`));
       this._markers[offer.id] = marker;
       markers.push(marker);
     });

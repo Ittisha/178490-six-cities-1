@@ -1,16 +1,18 @@
 import * as React from 'react';
-import renderer from 'react-test-renderer';
+import ShallowRenderer from 'react-test-renderer/shallow';
 
 import {ReviewSection} from './review-section';
 import {mockReviews} from '../../mocks/reviews';
 
 it(`Review correctly renders`, () => {
+  const renderer = new ShallowRenderer();
   const tree = renderer
-    .create(<ReviewSection
+    .render(<ReviewSection
       offerId={1}
       loadReviews={() => {}}
       reviews={mockReviews}
-    />).toJSON();
+      isAuthorized={true}
+    />);
 
   expect(tree).toMatchSnapshot();
 });

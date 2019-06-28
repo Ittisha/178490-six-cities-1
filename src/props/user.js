@@ -7,3 +7,8 @@ export default PropTypes.shape({
   name: PropTypes.string,
   email: PropTypes.string,
 });
+
+export const USER_AUTHORIZATION = PropTypes.shape({
+  email: PropTypes.string,
+  password: PropTypes.string,
+});

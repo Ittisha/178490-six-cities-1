@@ -15,9 +15,10 @@ export const getUser = (state) => (
   state[NameSpace.USER].user
 );
 
-export const getReviews = (state) => (
-  state[NameSpace.REVIEWS].reviews
-);
+export const getReviews = (state) => {
+  const reviews = state[NameSpace.REVIEWS].reviews;
+  return [...reviews].sort((a, b) => new Date(b.date) - new Date(a.date));
+};
 
 export const getIsAuthorized = (state) => (
   state[NameSpace.USER].isAuthorized

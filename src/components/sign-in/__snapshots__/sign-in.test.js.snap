@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Review correctly renders 1`] = `
+exports[`SignIn correctly renders 1`] = `
 <div
   className="page page--gray page--login"
 >
@@ -22,6 +22,8 @@ exports[`Review correctly renders 1`] = `
           action="#"
           className="login__form form"
           method="post"
+          onChange={[Function]}
+          onSubmit={[Function]}
         >
           <div
             className="login__input-wrapper form__input-wrapper"
@@ -34,11 +36,9 @@ exports[`Review correctly renders 1`] = `
             <input
               className="login__input form__input"
               name="email"
-              onChange={[Function]}
               placeholder="Email"
-              required=""
+              required={true}
               type="email"
-              value="ann@gm.com"
             />
           </div>
           <div
@@ -52,15 +52,14 @@ exports[`Review correctly renders 1`] = `
             <input
               className="login__input form__input"
               name="password"
-              onChange={[Function]}
               placeholder="Password"
-              required=""
+              required={true}
               type="password"
             />
           </div>
           <button
             className="login__submit form__submit button"
-            onClick={[Function]}
+            disabled={true}
             type="submit"
           >
             Sign in
@@ -74,8 +73,11 @@ exports[`Review correctly renders 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link"
-            href="#"
+            aria-current="page"
+            className="locations__item-link active"
+            href="/"
+            onClick={[Function]}
+            style={Object {}}
           >
             <span>
               Amsterdam

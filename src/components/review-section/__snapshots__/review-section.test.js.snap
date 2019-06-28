@@ -14,127 +14,38 @@ exports[`Review correctly renders 1`] = `
       2
     </span>
   </h2>
-  <ul
-    className="reviews__list"
-  >
-    <li
-      className="reviews__item"
-    >
-      <div
-        className="reviews__user user"
-      >
-        <div
-          className="reviews__avatar-wrapper user__avatar-wrapper"
-        >
-          <img
-            alt="Reviews avatar"
-            className="reviews__avatar user__avatar"
-            height="54"
-            src="undefined"
-            width="54"
-          />
-        </div>
-        <span
-          className="reviews__user-name"
-        >
-          
-        </span>
-      </div>
-      <div
-        className="reviews__info"
-      >
-        <div
-          className="reviews__rating rating"
-        >
-          <div
-            className="reviews__stars rating__stars"
-          >
-            <span
-              style={
-                Object {
-                  "width": "80%",
-                }
-              }
-            />
-            <span
-              className="visually-hidden"
-            >
-              Rating
-            </span>
-          </div>
-        </div>
-        <p
-          className="reviews__text"
-        >
-          
-        </p>
-        <time
-          className="reviews__time"
-          dateTime=""
-        >
-          undefined 
-        </time>
-      </div>
-    </li>
-    <li
-      className="reviews__item"
-    >
-      <div
-        className="reviews__user user"
-      >
-        <div
-          className="reviews__avatar-wrapper user__avatar-wrapper"
-        >
-          <img
-            alt="Reviews avatar"
-            className="reviews__avatar user__avatar"
-            height="54"
-            src="undefined"
-            width="54"
-          />
-        </div>
-        <span
-          className="reviews__user-name"
-        >
-          
-        </span>
-      </div>
-      <div
-        className="reviews__info"
-      >
-        <div
-          className="reviews__rating rating"
-        >
-          <div
-            className="reviews__stars rating__stars"
-          >
-            <span
-              style={
-                Object {
-                  "width": "100%",
-                }
-              }
-            />
-            <span
-              className="visually-hidden"
-            >
-              Rating
-            </span>
-          </div>
-        </div>
-        <p
-          className="reviews__text"
-        >
-          
-        </p>
-        <time
-          className="reviews__time"
-          dateTime=""
-        >
-          undefined 
-        </time>
-      </div>
-    </li>
-  </ul>
+  <ReviewsList
+    reviews={
+      Array [
+        Object {
+          "comment": "",
+          "date": "",
+          "id": 1,
+          "rating": 4,
+          "user": Object {
+            "avatarUrl": "",
+            "id": 1,
+            "isPro": false,
+            "name": "",
+          },
+        },
+        Object {
+          "comment": "",
+          "date": "",
+          "id": 2,
+          "rating": 5,
+          "user": Object {
+            "avatarUrl": "",
+            "id": 5,
+            "isPro": false,
+            "name": "",
+          },
+        },
+      ]
+    }
+  />
+  <WithFormSubmit
+    offerId={1}
+  />
 </section>
 `;

@@ -1,3 +1,4 @@
+import {toast} from 'react-toastify';
 import {mapOffers} from '../../mappers/map-offers';
 
 export const ActionType = {
@@ -22,7 +23,14 @@ export const Operation = {
   loadOffers: () => (dispatch, _getState, api) => {
     return api.get(`/hotels`)
       .then((response) => {
-        dispatch(ActionCreator.loadOffers(mapOffers(response.data)));
+        if (response.status === 200) {
+          dispatch(ActionCreator.loadOffers(mapOffers(response.data)));
+          return;
+        }
+        toast.error(response.response.data.error);
+      })
+      .catch((error) => {
+        toast.error(error.message);
       });
   },
 };

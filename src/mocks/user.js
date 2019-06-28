@@ -13,3 +13,8 @@ export const USER_MAPPED = {
   isPro: false,
   name: `ann`,
 };
+
+export const USER_AUTHORIZATION = {
+  user: `ann@here.com`,
+  password: `rTyh5`,
+};
