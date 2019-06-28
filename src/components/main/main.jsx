@@ -8,7 +8,7 @@ import {withToggleSorting} from '../../hoc/with-toggle-sorting/with-toggle-sorti
 import {Sorting} from '../sorting/sorting';
 import {withActiveItem} from '../../hoc/with-active-item/with-active-item';
 import {addPluralS} from '../../utils/addPluralS';
-import ApartmentPropsShape from '../../props/apartment';
+import apartmentPropsShape from '../../props/apartment';
 
 const SortingWithToggleAndActiveItem = withActiveItem(withToggleSorting(Sorting));
 
@@ -77,7 +77,7 @@ export const Main = ({apartments, city, cities, citiesCoords, handleCityChange, 
 };
 
 Main.propTypes = {
-  apartments: PropTypes.arrayOf(ApartmentPropsShape).isRequired,
+  apartments: PropTypes.arrayOf(apartmentPropsShape).isRequired,
   city: PropTypes.shape({
     name: PropTypes.string.isRequired,
     coords: PropTypes.arrayOf(PropTypes.number).isRequired,
@@ -87,7 +87,7 @@ Main.propTypes = {
   citiesCoords: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
   citiesZoom: PropTypes.objectOf(PropTypes.number).isRequired,
   handleCityChange: PropTypes.func.isRequired,
-  activeItem: ApartmentPropsShape,
+  activeItem: apartmentPropsShape,
   setActiveItem: PropTypes.func.isRequired,
   onOptionChange: PropTypes.func.isRequired,
 };

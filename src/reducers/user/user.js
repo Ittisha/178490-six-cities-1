@@ -11,7 +11,6 @@ const initialState = {
 const ActionType = {
   SET_USER_DATA: `SET_USER_DATA`,
   SET_IS_AUTHORIZED: `SET_IS_AUTHORIZED`,
-  SET_ERROR: `SET_ERROR`,
 };
 
 const ActionCreator = {
@@ -26,12 +25,6 @@ const ActionCreator = {
     return {
       type: ActionType.SET_IS_AUTHORIZED,
       payload: status,
-    };
-  },
-  setError: (error) => {
-    return {
-      type: ActionType.SET_ERROR,
-      payload: error,
     };
   }
 };
@@ -58,9 +51,13 @@ const Operation = {
           const userData = mapUser(response.data);
           dispatch(ActionCreator.setUserData(userData));
           dispatch(ActionCreator.setIsAuthorized(true));
+          toast.success(`You are logged as ${userData.name}`);
           return;
         }
         toast.error(response.response.data.error);
+      })
+      .catch((error) => {
+        toast.error(error.message);
       });
   },
 };
