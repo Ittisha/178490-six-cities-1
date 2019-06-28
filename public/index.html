@@ -10,14 +10,18 @@
         integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
         crossorigin=""/>
   <style>
-    .cities__place-card:hover {
+    .property__bookmark-button--active .property__bookmark-icon {
+      stroke: #4481c3;
+      fill: #4481c3;
+    }
+    .place-card__image:hover  {
       opacity: 0.6;
     }
   </style>
 </head>
 
-<body class="page page--gray page--main">
-  <div id="root"></div>
+<body>
+  <div id="root" class="page page--gray page--main"></div>
   <script src="bundle.js"></script>
 </body>
 </html>

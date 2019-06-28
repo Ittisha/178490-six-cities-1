@@ -8,10 +8,10 @@ import {addPluralS} from '../../utils/addPluralS';
 import {APARTMENT_TYPES} from '../../consts';
 import {getRatingPercent} from '../../utils/get-rating-percent';
 import ReviewSection from '../review-section/review-section';
+import BookmarkButton from '../bookmark-button/bookmark-button';
 import {CitiesMap} from '../cities-map/cities-map';
 import {CardList} from '../card-list/card-list';
-
-const MAX_PHOTO_NUMBER = 6;
+import {MAX_PHOTO_NUMBER} from '../../consts';
 
 export const OfferPage = ({offer, nearestOffers}) => {
   const {
@@ -30,6 +30,7 @@ export const OfferPage = ({offer, nearestOffers}) => {
     cityName,
     cityCoords,
     cityZoom,
+    isInBookmarks,
   } = offer;
 
   const city = {
@@ -70,12 +71,13 @@ export const OfferPage = ({offer, nearestOffers}) => {
                 <h1 className="property__name">
                   {title}
                 </h1>
-                <button className="property__bookmark-button button" type="button">
-                  <svg className="property__bookmark-icon" width="31" height="33">
-                    <use xlinkHref="#icon-bookmark"></use>
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <BookmarkButton
+                  offerId={id}
+                  isInBookmarks={isInBookmarks}
+                  className="property"
+                  width={31}
+                  height={33}
+                />
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">

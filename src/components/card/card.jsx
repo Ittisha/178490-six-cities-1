@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 
 import {getRatingPercent} from '../../utils/get-rating-percent';
 import {APARTMENT_TYPES} from '../../consts';
+import BookmarkButton from '../bookmark-button/bookmark-button';
 
 export class Card extends React.PureComponent {
   constructor(props) {
@@ -24,10 +25,7 @@ export class Card extends React.PureComponent {
       type,
       id
     } = apartment;
-    const bookmarkButtonClasses = isInBookmarks
-      ? `place-card__bookmark-button place-card__bookmark-button--active button`
-      : `place-card__bookmark-button button`;
-    const bookmarkHiddenText = isInBookmarks ? `In bookmarks` : `To bookmarks`;
+
     return (
       <article className={`place-card ${cardClass}`}>
         {isPremium && (
@@ -46,12 +44,13 @@ export class Card extends React.PureComponent {
               <b className="place-card__price-value">&euro;{price}</b>
               <span className="place-card__price-text">&#47;&nbsp;night</span>
             </div>
-            <button className={bookmarkButtonClasses} type="button">
-              <svg className="place-card__bookmark-icon" width="18" height="19">
-                <use xlinkHref="#icon-bookmark"></use>
-              </svg>
-              <span className="visually-hidden">{bookmarkHiddenText}</span>
-            </button>
+            <BookmarkButton
+              offerId={id}
+              isInBookmarks={isInBookmarks}
+              className="place-card"
+              width={18}
+              height={19}
+            />
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">

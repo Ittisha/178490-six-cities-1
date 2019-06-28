@@ -1,3 +1,6 @@
+export const SUCCESS_STATUS = 200;
+export const FORBIDDEN_STATUS = 403;
+
 export const APARTMENT_TYPES = {
   room: `Private Room`,
   apartment: `Apartment`,
@@ -19,6 +22,8 @@ export const MONTHS = [
   `November`,
   `December`,
 ];
+
+export const MAX_PHOTO_NUMBER = 6;
 
 export const MAX_REVIEWS_NUMBER = 10;
 

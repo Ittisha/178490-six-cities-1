@@ -46,25 +46,13 @@ exports[`OfferPage component is rendered properly 1`] = `
             >
               Beautiful & luxurious apartment at great location
             </h1>
-            <button
-              className="property__bookmark-button button"
-              type="button"
-            >
-              <svg
-                className="property__bookmark-icon"
-                height="33"
-                width="31"
-              >
-                <use
-                  xlinkHref="#icon-bookmark"
-                />
-              </svg>
-              <span
-                className="visually-hidden"
-              >
-                To bookmarks
-              </span>
-            </button>
+            <Memo(ConnectFunction)
+              className="property"
+              height={33}
+              isInBookmarks={false}
+              offerId={1}
+              width={31}
+            />
           </div>
           <div
             className="property__rating rating"
