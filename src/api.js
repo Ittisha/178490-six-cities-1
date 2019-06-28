@@ -1,4 +1,5 @@
 import axios from "axios";
+import {FORBIDDEN_STATUS} from './consts';
 
 export const BASE_URL = `https://es31-server.appspot.com/six-cities`;
 const TIME_OUT = 5000;
@@ -13,7 +14,7 @@ export const createApi = (onFailCallback) => {
   const onSuccess = (response) => response;
 
   const onFail = (err) => {
-    if (err.response.status === 403) {
+    if (err.response.status === FORBIDDEN_STATUS) {
       onFailCallback();
     }
     return err;

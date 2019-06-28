@@ -1,5 +1,6 @@
 import {mapReviews} from '../../mappers/map-reviews';
 import {toast} from 'react-toastify';
+import {SUCCESS_STATUS} from '../../consts';
 
 export const ActionType = {
   LOAD_REVIEW_SUCCESS: `GET_REVIEWS`,
@@ -24,7 +25,7 @@ export const Operation = {
   loadReviews: (id) => (dispatch, _getState, api) => {
     return api.get(`/comments/${id}`)
       .then((response) => {
-        if (response.status === 200) {
+        if (response.status === SUCCESS_STATUS) {
           dispatch(ActionCreator.loadReviews(mapReviews(response.data)));
           return;
         }
@@ -41,7 +42,7 @@ export const Operation = {
       rating,
     })
       .then((response) => {
-        if (response.status === 200) {
+        if (response.status === SUCCESS_STATUS) {
           dispatch(ActionCreator.loadReviews(mapReviews(response.data)));
           toast.success(`You review has been posted`);
           return;

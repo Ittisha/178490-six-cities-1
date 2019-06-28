@@ -1,5 +1,5 @@
 import * as React from 'react';
-import renderer from 'react-test-renderer';
+import ShallowRenderer from 'react-test-renderer/shallow';
 import {StaticRouter} from "react-router-dom";
 import {Card} from './card';
 import {OFFERS} from '../../mocks/offers';
@@ -7,15 +7,15 @@ import {OFFERS} from '../../mocks/offers';
 const mockApartment = OFFERS[0];
 
 it(`Card component is rendered properly`, () => {
+  const renderer = new ShallowRenderer();
   const tree = renderer
-    .create(<StaticRouter>
+    .render(<StaticRouter>
       <Card
         apartment={mockApartment}
         onImgClick={() => {}}
         cardClass={`near-places__card`}
       />
-    </StaticRouter>)
-    .toJSON();
+    </StaticRouter>);
 
   expect(tree).toMatchSnapshot();
 });
