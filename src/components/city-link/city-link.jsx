@@ -4,30 +4,31 @@ import PropTypes from 'prop-types';
 export class CityLink extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.onClick = this.onClick.bind(this);
-  }
-
-  onClick(evt) {
-    evt.preventDefault();
-    const {city, onLinkClick, cityCoords, cityZoom} = this.props;
-    onLinkClick({name: city, coords: cityCoords, zoom: cityZoom});
+    this._handleClick = this._handleClick.bind(this);
   }
 
   render() {
-    const {city, isActive} = this.props;
+    const {city, isActive, isDiv} = this.props;
     const defaultClassName = `locations__item-link tabs__item`;
     const className = isActive ? `${defaultClassName} tabs__item--active` : defaultClassName;
+    const CustomWrapperTag = isDiv ? `div` : `li`;
     return (
-      <li className="locations__item">
+      <CustomWrapperTag className="locations__item">
         <a
           className={className}
-          onClick={this.onClick}
+          onClick={this._handleClick}
           href="#"
         >
           <span>{city}</span>
         </a>
-      </li>
+      </CustomWrapperTag>
     );
+  }
+
+  _handleClick(evt) {
+    evt.preventDefault();
+    const {city, onLinkClick, cityCoords, cityZoom} = this.props;
+    onLinkClick({name: city, coords: cityCoords, zoom: cityZoom});
   }
 }
 
@@ -37,4 +38,9 @@ CityLink.propTypes = {
   cityZoom: PropTypes.number.isRequired,
   isActive: PropTypes.bool.isRequired,
   onLinkClick: PropTypes.func.isRequired,
+  isDiv: PropTypes.bool,
+};
+
+CityLink.defaultProps = {
+  isDiv: false,
 };

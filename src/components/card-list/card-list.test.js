@@ -14,6 +14,7 @@ it(`CardList component is rendered properly`, () => {
         setActiveOffer={() => {}}
         cardListClass={`near-places__list`}
         cardClass={`near-places__card`}
+        imageWrapperClass={`near-places__image-wrapper`}
       />
     </StaticRouter>);
 

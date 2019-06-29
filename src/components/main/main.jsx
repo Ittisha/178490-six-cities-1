@@ -54,6 +54,7 @@ export const Main = ({apartments, city, cities, citiesCoords, handleCityChange, 
                   setActiveOffer={setActiveItem}
                   cardListClass="cities__places-list tabs__content"
                   cardClass="cities__place-card"
+                  imageWrapperClass="cities__image-wrapper"
                 />
               </div>
             </section>

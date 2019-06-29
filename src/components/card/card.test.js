@@ -14,6 +14,7 @@ it(`Card component is rendered properly`, () => {
         apartment={mockApartment}
         onImgClick={() => {}}
         cardClass={`near-places__card`}
+        imageWrapperClass={`near-places__image-wrapper`}
       />
     </StaticRouter>);
 

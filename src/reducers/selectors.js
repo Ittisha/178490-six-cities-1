@@ -28,10 +28,6 @@ export const getOffer = (state, id) => {
   return state[NameSpace.OFFERS].offers.find((offer) => offer.id === Number(id));
 };
 
-export const getAuthorizationError = (state) => (
-  state[NameSpace.USER].error
-);
-
 export const getCities = createSelector(
     getOffers,
     (offers) => [...new Set(offers.map((offer) => offer.cityName))].slice(0, 6)
@@ -82,3 +78,15 @@ export const getNearestOffers = (id, number) => createSelector(
         .filter((offer) => offer.id !== idNumber)
         .slice(1, number + 1);
     });
+
+export const getFavorites = (state) => state[NameSpace.FAVORITES].favorites.reduce((obj, curr) => {
+  const name = curr.cityName;
+
+  if (!obj[name]) {
+    obj[name] = [];
+  }
+
+  return Object.assign(obj, {
+    [name]: [...obj[name], curr],
+  });
+}, {});

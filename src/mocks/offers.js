@@ -131,3 +131,60 @@ export const OFFERS = [
   }
 
 ];
+
+export const MOCK_FAVORITES = {
+  'Amsterdam': [
+    {
+      isPremium: false,
+      isInBookmarks: false,
+      title: `Canal View Prinsengracht`,
+      photoUrl: `img/apartment-02.jpg`,
+      price: 132,
+      type: `Apartment`,
+      rating: 4,
+      id: 3,
+      coordinates: [52.3909553943508, 4.929309666406198],
+      cityName: `Amsterdam`,
+      cityCoords: [52.38333, 4.9],
+      bedrooms: 2,
+      cityZoom: 15,
+      description: `description`,
+      goods: [`Something`],
+      host: {
+        id: 2,
+        isPro: true,
+        name: `Name`,
+        avatar: `apartment-01.jpg`,
+      },
+      images: [`img/apartment-01.jpg`],
+      maxAdults: 4,
+      zoom: 16,
+    },
+    {
+      isPremium: false,
+      isInBookmarks: false,
+      title: `Nice, cozy, warm big bed apartment`,
+      photoUrl: `img/apartment-03.jpg`,
+      price: 180,
+      type: `Apartment`,
+      rating: 4,
+      id: 4,
+      coordinates: [52.3809553943508, 4.939309666406198],
+      cityName: `Amsterdam`,
+      cityCoords: [52.38333, 4.9],
+      bedrooms: 2,
+      cityZoom: 15,
+      description: `description`,
+      goods: [`Something`],
+      host: {
+        id: 2,
+        isPro: true,
+        name: `Name`,
+        avatar: `apartment-01.jpg`,
+      },
+      images: [`img/apartment-01.jpg`],
+      maxAdults: 4,
+      zoom: 16,
+    },
+  ]
+};

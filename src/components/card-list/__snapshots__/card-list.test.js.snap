@@ -210,6 +210,7 @@ exports[`CardList component is rendered properly 1`] = `
     }
     cardClass="near-places__card"
     cardListClass="near-places__list"
+    imageWrapperClass="near-places__image-wrapper"
     setActiveOffer={[Function]}
   />
 </Router>

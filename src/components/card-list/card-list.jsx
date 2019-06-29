@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import {Card} from '../card/card';
 
-export const CardList = ({apartments, setActiveOffer, cardClass, cardListClass}) => (
+export const CardList = ({apartments, setActiveOffer, cardClass, cardListClass, imageWrapperClass}) => (
   <div className={`places__list ${cardListClass}`}>
     {apartments.map((apartment) => (
       <Card
@@ -11,6 +11,7 @@ export const CardList = ({apartments, setActiveOffer, cardClass, cardListClass})
         apartment={apartment}
         onImgClick={setActiveOffer}
         cardClass={cardClass}
+        imageWrapperClass={imageWrapperClass}
       />
     ))}
   </div>
@@ -31,4 +32,5 @@ CardList.propTypes = {
   setActiveOffer: PropTypes.func,
   cardClass: PropTypes.string.isRequired,
   cardListClass: PropTypes.string.isRequired,
+  imageWrapperClass: PropTypes.string.isRequired,
 };
