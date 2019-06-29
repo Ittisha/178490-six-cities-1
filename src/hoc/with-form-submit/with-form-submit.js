@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {EMAIL_REG_EXP} from '../../consts';
 
-export const withFormSubmit = (Component) => {
+const withFormSubmit = (Component) => {
   class WithFormSubmit extends React.PureComponent {
     constructor(props) {
       super(props);
@@ -11,8 +11,8 @@ export const withFormSubmit = (Component) => {
         dataToSend: {},
       };
 
-      this._onSubmit = this._onSubmit.bind(this);
-      this._onChange = this._onChange.bind(this);
+      this._handleFormSubmit = this._handleFormSubmit.bind(this);
+      this._handleFormChange = this._handleFormChange.bind(this);
     }
 
     render() {
@@ -23,25 +23,25 @@ export const withFormSubmit = (Component) => {
           {...this.props}
           disabled={disabled}
           formData={dataToSend}
-          onSubmit={this._onSubmit}
-          onChange={this._onChange}
+          onSubmit={this._handleFormSubmit}
+          onChange={this._handleFormChange}
         />
       );
     }
 
-    _onSubmit() {
+    _handleFormSubmit() {
       this.setState({
         disabled: true,
         dataToSend: {},
       });
     }
 
-    _onChange(evt) {
+    _handleFormChange(evt) {
       evt.persist();
 
       let disabled = !evt.target.form.checkValidity();
-      if (evt.target.name === `email` && !disabled) {
-        disabled = !evt.target.value.match(EMAIL_REG_EXP);
+      if (this.state.dataToSend.hasOwnProperty(`email`) && !disabled) {
+        disabled = !this.state.dataToSend.email.match(EMAIL_REG_EXP);
       }
       this.setState((prevState) => {
         return {
@@ -57,3 +57,5 @@ export const withFormSubmit = (Component) => {
 
   return WithFormSubmit;
 };
+
+export {withFormSubmit};

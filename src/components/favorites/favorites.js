@@ -1,133 +1,111 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {NavLink} from 'react-router-dom';
 
-export const Favourites = () => {
-  return (<React.Fragment>
-    <main className="page__main page__main--favorites">
-      <div className="page__favorites-container container">
-        <section className="favorites">
-          <h1 className="favorites__title">Saved listing</h1>
-          <ul className="favorites__list">
-            <li className="favorites__locations-items">
-              <div className="favorites__locations locations locations--current">
-                <div className="locations__item">
-                  <a className="locations__item-link" href="#">
-                    <span>Amsterdam</span>
-                  </a>
-                </div>
-              </div>
-              <div className="favorites__places">
-                <article className="favorites__card place-card">
-                  <div className="favorites__image-wrapper place-card__image-wrapper">
-                    <a href="#">
-                      <img className="place-card__image" src="img/apartment-small-03.jpg" width="150" height="110" alt="Place image" />
-                    </a>
-                  </div>
-                  <div className="favorites__card-info place-card__info">
-                    <div className="place-card__price-wrapper">
-                      <div className="place-card__price">
-                        <b className="place-card__price-value">&euro;180</b>
-                        <span className="place-card__price-text">&#47;&nbsp;night</span>
-                      </div>
-                      <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
-                        <svg className="place-card__bookmark-icon" width="18" height="19">
-                          <use xlinkHref="#icon-bookmark"></use>
-                        </svg>
-                        <span className="visually-hidden">In bookmarks</span>
-                      </button>
-                    </div>
-                    <div className="place-card__rating rating">
-                      <div className="place-card__stars rating__stars">
-                        <span style={{width: `100%`}}></span>
-                        <span className="visually-hidden">Rating</span>
-                      </div>
-                    </div>
-                    <h2 className="place-card__name">
-                      <a href="#">Nice, cozy, warm big bed apartment</a>
-                    </h2>
-                    <p className="place-card__type">Apartment</p>
-                  </div>
-                </article>
+import {history} from '../../history';
+import {CityLink} from '../city-link/city-link';
+import {Card} from '../card/card';
+import {Operation} from '../../reducers/favorites/favorites';
+import {getFavorites} from '../../reducers/selectors';
+import {ActionCreator as CitiesActionCreator} from '../../reducers/cities/cities';
 
-                <article className="favorites__card place-card">
-                  <div className="favorites__image-wrapper place-card__image-wrapper">
-                    <a href="#">
-                      <img className="place-card__image" src="img/room-small.jpg" width="150" height="110" alt="Place image" />
-                    </a>
-                  </div>
-                  <div className="favorites__card-info place-card__info">
-                    <div className="place-card__price-wrapper">
-                      <div className="place-card__price">
-                        <b className="place-card__price-value">&euro;80</b>
-                        <span className="place-card__price-text">&#47;&nbsp;night</span>
-                      </div>
-                      <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
-                        <svg className="place-card__bookmark-icon" width="18" height="19">
-                          <use xlinkHref="#icon-bookmark"></use>
-                        </svg>
-                        <span className="visually-hidden">In bookmarks</span>
-                      </button>
-                    </div>
-                    <div className="place-card__rating rating">
-                      <div className="place-card__stars rating__stars">
-                        <span style={{width: `80%`}}></span>
-                        <span className="visually-hidden">Rating</span>
-                      </div>
-                    </div>
-                    <h2 className="place-card__name">
-                      <a href="#">Wood and stone place</a>
-                    </h2>
-                    <p className="place-card__type">Private room</p>
-                  </div>
-                </article>
-              </div>
-            </li>
+class Favorites extends React.PureComponent {
+  constructor(props) {
+    super(props);
 
-            <li className="favorites__locations-items">
-              <div className="favorites__locations locations locations--current">
-                <div className="locations__item">
-                  <a className="locations__item-link" href="#">
-                    <span>Cologne</span>
-                  </a>
-                </div>
+    this._handleLinkClick = this._handleLinkClick.bind(this);
+  }
+
+  componentDidMount() {
+    const {loadFavorites} = this.props;
+    loadFavorites();
+  }
+
+  render() {
+    const {favorites} = this.props;
+    const hasFavorites = favorites && Object.keys(favorites).length !== 0;
+    const emptyClass = !hasFavorites ? `page__main--favorites-empty` : ``;
+
+    return (<React.Fragment>
+      <main className={`page__main page__main--favorites ${emptyClass}`}>
+        <div className="page__favorites-container container">
+          {!hasFavorites && (
+            <section className="favorites favorites--empty">
+              <h1 className="visually-hidden">Favorites (empty)</h1>
+              <div className="favorites__status-wrapper">
+                <b className="favorites__status">Nothing yet saved.</b>
+                <p className="favorites__status-description">Save properties to narrow down search or plan yor future trips.</p>
               </div>
-              <div className="favorites__places">
-                <article className="favorites__card place-card">
-                  <div className="favorites__image-wrapper place-card__image-wrapper">
-                    <a href="#">
-                      <img className="place-card__image" src="img/apartment-small-04.jpg" width="150" height="110" alt="Place image" />
-                    </a>
+            </section>
+          )}
+          {hasFavorites && (
+            <section className="favorites">
+              <h1 className="favorites__title">Saved listing</h1>
+              <ul className="favorites__list">
+                {Object.entries(favorites).map(([city, offers]) => <li
+                  key={`favorite-${city}`}
+                  className="favorites__locations-items"
+                >
+                  <div className="favorites__locations locations locations--current">
+                    <CityLink
+                      city={city}
+                      cityCoords={offers[0].cityCoords}
+                      cityZoom={offers[0].cityZoom}
+                      isActive={true}
+                      isDiv={true}
+                      onLinkClick={this._handleLinkClick}
+                    />
                   </div>
-                  <div className="favorites__card-info place-card__info">
-                    <div className="place-card__price-wrapper">
-                      <div className="place-card__price">
-                        <b className="place-card__price-value">&euro;180</b>
-                        <span className="place-card__price-text">&#47;&nbsp;night</span>
-                      </div>
-                      <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
-                        <svg className="place-card__bookmark-icon" width="18" height="19">
-                          <use xlinkHref="#icon-bookmark"></use>
-                        </svg>
-                        <span className="visually-hidden">In bookmarks</span>
-                      </button>
-                    </div>
-                    <div className="place-card__rating rating">
-                      <div className="place-card__stars rating__stars">
-                        <span style={{width: `100%`}}></span>
-                        <span className="visually-hidden">Rating</span>
-                      </div>
-                    </div>
-                    <h2 className="place-card__name">
-                      <a href="#">White castle</a>
-                    </h2>
-                    <p className="place-card__type">Apartment</p>
+                  <div className="favorites__places">
+                    {offers.map((offer) => <Card
+                      key={`${city}-${offer.id}`}
+                      cardClass="favorites__card"
+                      imageWrapperClass="favorites__image-wrapper"
+                      infoClass="favorites__card-info"
+                      apartment={offer}
+                      isSmall={true}
+                    />)}
                   </div>
-                </article>
-              </div>
-            </li>
-          </ul>
-        </section>
-      </div>
-    </main>
-  </React.Fragment>
-  );
+                </li>)}
+              </ul>
+            </section>
+          )}
+        </div>
+      </main>
+      <footer className="footer container">
+        <NavLink
+          to={`/`}
+          className="footer__logo-link"
+        >
+          <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33" />
+        </NavLink>
+      </footer>
+    </React.Fragment>
+    );
+  }
+
+  _handleLinkClick(cityToChange) {
+    const {changeCity} = this.props;
+    changeCity(cityToChange);
+    history.push(`/`);
+  }
+}
+
+Favorites.propTypes = {
+  loadFavorites: PropTypes.func.isRequired,
+  favorites: PropTypes.object.isRequired,
+  changeCity: PropTypes.func.isRequired,
 };
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  favorites: getFavorites(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  loadFavorites: () => dispatch(Operation.loadFavorites()),
+  changeCity: (city) => dispatch(CitiesActionCreator.changeCity(city)),
+});
+
+export {Favorites};
+export default connect(mapStateToProps, mapDispatchToProps)(Favorites);

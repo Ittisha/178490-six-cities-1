@@ -2,7 +2,7 @@ import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
 import {ReviewSection} from './review-section';
-import {mockReviews} from '../../mocks/reviews';
+import {MOCK_REVIEWS} from '../../mocks/reviews';
 
 it(`Review correctly renders`, () => {
   const renderer = new ShallowRenderer();
@@ -10,7 +10,7 @@ it(`Review correctly renders`, () => {
     .render(<ReviewSection
       offerId={1}
       loadReviews={() => {}}
-      reviews={mockReviews}
+      reviews={MOCK_REVIEWS}
       isAuthorized={true}
     />);
 

@@ -84,7 +84,9 @@ exports[`OfferPage component is rendered properly 1`] = `
           >
             <li
               className="property__feature property__feature--entire"
-            />
+            >
+              Apartment
+            </li>
             <li
               className="property__feature property__feature--bedrooms"
             >
@@ -307,6 +309,7 @@ exports[`OfferPage component is rendered properly 1`] = `
           }
           cardClass="near-places__card"
           cardListClass="near-places__list"
+          imageWrapperClass="near-places__image-wrapper"
         />
       </section>
     </div>

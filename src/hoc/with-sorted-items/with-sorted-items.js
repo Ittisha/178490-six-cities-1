@@ -7,7 +7,7 @@ import {sortOffers} from '../../utils/sortOffers';
 import {getCityOffers} from '../../reducers/selectors';
 import ApartmentPropsShape from '../../props/apartment';
 
-export const withSortedItems = (Component) => {
+const withSortedItems = (Component) => {
   class WithSortedItems extends React.PureComponent {
     constructor(props) {
       super(props);
@@ -48,3 +48,5 @@ export const withSortedItems = (Component) => {
 
   return connect(mapStateToProps)(WithSortedItems);
 };
+
+export {withSortedItems};

@@ -1,7 +1,7 @@
 import MockAdapter from 'axios-mock-adapter';
 
 import {mapReviews} from '../../mappers/map-reviews';
-import {mockReviews} from '../../mocks/reviews';
+import {MOCK_REVIEWS, MOCK_REVIEW} from '../../mocks/reviews';
 import {createApi} from '../../api';
 import {
   ActionCreator,
@@ -19,14 +19,34 @@ describe(`Operation works correctly`, () => {
 
     apiMock
       .onGet(`/comments/1`)
-      .reply(200, mockReviews);
+      .reply(200, MOCK_REVIEWS);
 
     return reviewsLoader(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_REVIEW_SUCCESS,
-          payload: mapReviews(mockReviews),
+          payload: mapReviews(MOCK_REVIEWS),
+        });
+      });
+  });
+
+  it(`Should make a correct POST API call to /comments/:id`, function () {
+    const dispatch = jest.fn();
+    const api = createApi(dispatch);
+    const apiMock = new MockAdapter(api);
+    const reviewsLoader = Operation.sendReview(MOCK_REVIEW);
+
+    apiMock
+      .onPost(`/comments/1`)
+      .reply(200, MOCK_REVIEWS);
+
+    return reviewsLoader(dispatch, jest.fn(), api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_REVIEW_SUCCESS,
+          payload: mapReviews(MOCK_REVIEWS),
         });
       });
   });
@@ -39,7 +59,7 @@ describe(`Reducer works correctly`, () => {
     },
     {
       type: ActionType.LOAD_REVIEW_SUCCESS,
-      payload: mockReviews,
+      payload: MOCK_REVIEWS,
     });
     expect(reducerOutput.reviews.length).not.toBe(0);
   });
@@ -47,9 +67,9 @@ describe(`Reducer works correctly`, () => {
 
 describe(`ActionCreator works correctly`, () => {
   it(`should return action with offers payload for loading offers`, () => {
-    expect(ActionCreator.loadReviews(mockReviews)).toEqual({
+    expect(ActionCreator.loadReviews(MOCK_REVIEWS)).toEqual({
       type: ActionType.LOAD_REVIEW_SUCCESS,
-      payload: mockReviews,
+      payload: MOCK_REVIEWS,
     });
   });
 });

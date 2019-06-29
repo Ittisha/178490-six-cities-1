@@ -1,4 +1,4 @@
-export const mockReviews = [
+export const MOCK_REVIEWS = [
   {
     id: 1,
     user: {
@@ -19,8 +19,14 @@ export const mockReviews = [
       isPro: false,
       name: ``,
     },
-    rating: 5,
+    rating: 3,
     comment: ``,
     date: ``,
   }
 ];
+
+export const MOCK_REVIEW = {
+  comment: ``,
+  id: 1,
+  rating: `3`,
+};

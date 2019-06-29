@@ -17,6 +17,7 @@ describe(`e2e Card component test`, () => {
           apartment={mockApartment}
           onImgClick={clickHandler}
           cardClass="near-places__card"
+          imageWrapperClass={`near-places__image-wrapper`}
         />
     );
 
@@ -33,6 +34,7 @@ describe(`e2e Card component test`, () => {
           apartment={mockApartment}
           onImgClick={clickHandler}
           cardClass="near-places__card"
+          imageWrapperClass={`near-places__image-wrapper`}
         />
     );
 

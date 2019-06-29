@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 import {getIsAuthorized} from '../../reducers/selectors';
 
-export const withPrivateRoutes = (Component) => {
+const withPrivateRoutes = (Component) => {
   const WithPrivateRoute = (props) => {
     const {isAuthorized} = props;
     return isAuthorized ? <Component {...props} /> : <Redirect to="/login"/>;
@@ -21,3 +21,5 @@ export const withPrivateRoutes = (Component) => {
 
   return connect(mapStateToProps)(WithPrivateRoute);
 };
+
+export {withPrivateRoutes};

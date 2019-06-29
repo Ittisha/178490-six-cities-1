@@ -18,6 +18,19 @@ describe(`Reducer works correctly`, () => {
       user: null,
     });
   });
+  it(`should set user data`, () => {
+    expect(reducer({
+      isAuthorized: false,
+      user: null,
+    },
+    {
+      type: ActionType.SET_USER_DATA,
+      payload: {name: `test`},
+    })).toEqual({
+      isAuthorized: false,
+      user: {name: `test`},
+    });
+  });
 });
 
 describe(`ActionCreator works correctly`, () => {
@@ -25,6 +38,13 @@ describe(`ActionCreator works correctly`, () => {
     expect(ActionCreator.setUserData(user)).toEqual({
       type: ActionType.SET_USER_DATA,
       payload: user,
+    });
+  });
+
+  it(`should return action with auth status`, () => {
+    expect(ActionCreator.setIsAuthorized(true)).toEqual({
+      type: ActionType.SET_IS_AUTHORIZED,
+      payload: true,
     });
   });
 });

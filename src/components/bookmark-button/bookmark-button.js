@@ -3,10 +3,10 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Operation} from '../../reducers/favorites/favorites';
 
-export class BookmarkButton extends React.PureComponent {
+class BookmarkButton extends React.PureComponent {
   constructor(props) {
     super(props);
-    this._onClick = this._onClick.bind(this);
+    this._handleButtonClick = this._handleButtonClick.bind(this);
   }
 
   render() {
@@ -22,7 +22,7 @@ export class BookmarkButton extends React.PureComponent {
     return <button
       className={`${className}__bookmark-button button ${activeButtonClass}`}
       type="button"
-      onClick={this._onClick}
+      onClick={this._handleButtonClick}
     >
       <svg
         className={`${className}__bookmark-icon`}
@@ -35,7 +35,7 @@ export class BookmarkButton extends React.PureComponent {
     </button>;
   }
 
-  _onClick() {
+  _handleButtonClick() {
     const {
       isInBookmarks,
       offerId,
@@ -59,4 +59,5 @@ const mapDispatchToProps = (dispatch) => ({
   updateFavorites: (isFavorite, id) => dispatch(Operation.updateFavorite(isFavorite, id))
 });
 
+export {BookmarkButton};
 export default connect(null, mapDispatchToProps)(BookmarkButton);

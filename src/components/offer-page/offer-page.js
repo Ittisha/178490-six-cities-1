@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {getNearestOffers, getOffer} from '../../reducers/selectors';
 import offerPropTypes from '../../props/apartment';
 import {addPluralS} from '../../utils/addPluralS';
-import {APARTMENT_TYPES} from '../../consts';
+import {ApartmentTypes, DefaultBookmarkButton} from '../../consts';
 import {getRatingPercent} from '../../utils/get-rating-percent';
 import ReviewSection from '../review-section/review-section';
 import BookmarkButton from '../bookmark-button/bookmark-button';
@@ -13,7 +13,7 @@ import {CitiesMap} from '../cities-map/cities-map';
 import {CardList} from '../card-list/card-list';
 import {MAX_PHOTO_NUMBER} from '../../consts';
 
-export const OfferPage = ({offer, nearestOffers}) => {
+const OfferPage = ({offer, nearestOffers}) => {
   const {
     images,
     title,
@@ -75,8 +75,8 @@ export const OfferPage = ({offer, nearestOffers}) => {
                   offerId={id}
                   isInBookmarks={isInBookmarks}
                   className="property"
-                  width={31}
-                  height={33}
+                  width={DefaultBookmarkButton.WIDTH}
+                  height={DefaultBookmarkButton.HEIGHT}
                 />
               </div>
               <div className="property__rating rating">
@@ -88,7 +88,7 @@ export const OfferPage = ({offer, nearestOffers}) => {
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
-                  {APARTMENT_TYPES[type]}
+                  {ApartmentTypes[type.toUpperCase()]}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
                   {`${bedrooms} ${wordBedroomForm}`}
@@ -153,6 +153,7 @@ export const OfferPage = ({offer, nearestOffers}) => {
               apartments={nearestOffers}
               cardListClass={`near-places__list`}
               cardClass={`near-places__card`}
+              imageWrapperClass={`near-places__image-wrapper`}
             />
           </section>
         </div>
@@ -175,4 +176,5 @@ const mapStateToProps = (state, ownProps) => {
   });
 };
 
+export {OfferPage};
 export default connect(mapStateToProps)(OfferPage);

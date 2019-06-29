@@ -249,6 +249,7 @@ exports[`Main component is rendered properly 1`] = `
             }
             cardClass="cities__place-card"
             cardListClass="cities__places-list tabs__content"
+            imageWrapperClass="cities__image-wrapper"
             setActiveOffer={[Function]}
           />
         </div>

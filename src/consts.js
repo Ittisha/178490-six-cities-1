@@ -1,11 +1,11 @@
 export const SUCCESS_STATUS = 200;
 export const FORBIDDEN_STATUS = 403;
 
-export const APARTMENT_TYPES = {
-  room: `Private Room`,
-  apartment: `Apartment`,
-  house: `House`,
-  hotel: `Hotel`,
+export const ApartmentTypes = {
+  ROOM: `Private Room`,
+  APARTMENT: `Apartment`,
+  HOUSE: `House`,
+  HOTEL: `Hotel`,
 };
 
 export const MONTHS = [
@@ -43,3 +43,23 @@ export const Review = {
 };
 
 export const EMAIL_REG_EXP = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+
+export const SmallCardImage = {
+  WIDTH: 150,
+  HEIGHT: 110,
+};
+
+export const DefaultCardImage = {
+  WIDTH: 260,
+  HEIGHT: 200,
+};
+
+export const SmallBookmarkButton = {
+  WIDTH: 18,
+  HEIGHT: 19,
+};
+
+export const DefaultBookmarkButton = {
+  WIDTH: 31,
+  HEIGHT: 33,
+};

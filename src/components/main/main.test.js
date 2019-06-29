@@ -2,18 +2,7 @@ import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import {Main} from './main';
 import {OFFERS} from '../../mocks/offers';
-import {INIT_CITY} from '../../mocks/init-city';
-
-
-const cities = [`Amsterdam`, `Paris`];
-const citiesCoords = {
-  Amsterdam: [52.38333, 4.9],
-  Paris: [48.864716, 2.349014],
-};
-const citiesZoom = {
-  Amsterdam: 17,
-  Paris: 15,
-};
+import {INIT_CITY, MOCK_CITIES_ZOOM, MOCK_CITIES_COORDS, MOCK_CITIES} from '../../mocks/city';
 
 it(`Main component is rendered properly`, () => {
   const renderer = new ShallowRenderer();
@@ -21,9 +10,9 @@ it(`Main component is rendered properly`, () => {
       <Main
         apartments={OFFERS}
         city={INIT_CITY}
-        cities={cities}
-        citiesCoords={citiesCoords}
-        citiesZoom={citiesZoom}
+        cities={MOCK_CITIES}
+        citiesCoords={MOCK_CITIES_COORDS}
+        citiesZoom={MOCK_CITIES_ZOOM}
         handleCityChange={() => {}}
         setActiveItem={() => {}}
         onOptionChange={() => {}}

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {SortingOptions} from '../../consts';
 import {SortingOption} from '../sorting-option/sorting-option';
 
-export class Sorting extends React.PureComponent {
+class Sorting extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -56,3 +56,5 @@ Sorting.propTypes = {
   setActiveItem: PropTypes.func.isRequired,
   onOptionChange: PropTypes.func.isRequired,
 };
+
+export {Sorting};

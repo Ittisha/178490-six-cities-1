@@ -4,7 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 
 import {SignIn} from './sign-in';
 import {USER_AUTHORIZATION} from '../../mocks/user';
-import {INIT_CITY} from '../../mocks/init-city';
+import {INIT_CITY} from '../../mocks/city';
 
 Enzyme.configure({adapter: new Adapter()});
 

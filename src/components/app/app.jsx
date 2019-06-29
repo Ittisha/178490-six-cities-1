@@ -5,7 +5,7 @@ import {Switch, Route, Redirect} from 'react-router-dom';
 import {Main} from '../main/main';
 import Header from '../header/header';
 import SignIn from '../sign-in/sign-in';
-import {Favourites} from '../favorites/favorites';
+import Favorites from '../favorites/favorites';
 import OfferPage from '../offer-page/offer-page';
 import {withFormSubmit} from '../../hoc/with-form-submit/with-form-submit';
 import {withPrivateRoutes} from '../../hoc/with-private-routes/with-private-routes';
@@ -26,10 +26,10 @@ import apartmentPropsShape from '../../props/apartment';
 import cityPropsShape from '../../props/city';
 
 const SignInWithAuthorization = withFormSubmit(SignIn);
-const FavouritesWithPrivateRoutes = withPrivateRoutes(Favourites);
+const FavouritesWithPrivateRoutes = withPrivateRoutes(Favorites);
 const MainWithActiveItem = withActiveItem(withSortedItems(Main));
 
-export class App extends React.PureComponent {
+class App extends React.PureComponent {
   render() {
     const {
 
@@ -43,7 +43,6 @@ export class App extends React.PureComponent {
 
     const MainWithPropsAndActiveItem = () => {
       return (<MainWithActiveItem
-
         city={city}
         cities={cities}
         handleCityChange={handleCityChange}
@@ -95,4 +94,5 @@ const mapDispatchToProps = (dispatch) => ({
   checkAuthorization: () => dispatch(UserOperation.checkAuthorization()),
 });
 
+export {App};
 export default connect(mapStateToProps, mapDispatchToProps)(App);

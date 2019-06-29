@@ -63,6 +63,9 @@ exports[`Card component is rendered properly 1`] = `
       }
     }
     cardClass="near-places__card"
+    imageWrapperClass="near-places__image-wrapper"
+    infoClass=""
+    isSmall={false}
     onImgClick={[Function]}
   />
 </Router>

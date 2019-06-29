@@ -1,0 +1,156 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Favorites renders correctly 1`] = `
+<React.Fragment>
+  <main
+    className="page__main page__main--favorites "
+  >
+    <div
+      className="page__favorites-container container"
+    >
+      <section
+        className="favorites"
+      >
+        <h1
+          className="favorites__title"
+        >
+          Saved listing
+        </h1>
+        <ul
+          className="favorites__list"
+        >
+          <li
+            className="favorites__locations-items"
+          >
+            <div
+              className="favorites__locations locations locations--current"
+            >
+              <CityLink
+                city="Amsterdam"
+                cityCoords={
+                  Array [
+                    52.38333,
+                    4.9,
+                  ]
+                }
+                cityZoom={15}
+                isActive={true}
+                isDiv={true}
+                onLinkClick={[Function]}
+              />
+            </div>
+            <div
+              className="favorites__places"
+            >
+              <Card
+                apartment={
+                  Object {
+                    "bedrooms": 2,
+                    "cityCoords": Array [
+                      52.38333,
+                      4.9,
+                    ],
+                    "cityName": "Amsterdam",
+                    "cityZoom": 15,
+                    "coordinates": Array [
+                      52.3909553943508,
+                      4.929309666406198,
+                    ],
+                    "description": "description",
+                    "goods": Array [
+                      "Something",
+                    ],
+                    "host": Object {
+                      "avatar": "apartment-01.jpg",
+                      "id": 2,
+                      "isPro": true,
+                      "name": "Name",
+                    },
+                    "id": 3,
+                    "images": Array [
+                      "img/apartment-01.jpg",
+                    ],
+                    "isInBookmarks": false,
+                    "isPremium": false,
+                    "maxAdults": 4,
+                    "photoUrl": "img/apartment-02.jpg",
+                    "price": 132,
+                    "rating": 4,
+                    "title": "Canal View Prinsengracht",
+                    "type": "Apartment",
+                    "zoom": 16,
+                  }
+                }
+                cardClass="favorites__card"
+                imageWrapperClass="favorites__image-wrapper"
+                infoClass="favorites__card-info"
+                isSmall={true}
+              />
+              <Card
+                apartment={
+                  Object {
+                    "bedrooms": 2,
+                    "cityCoords": Array [
+                      52.38333,
+                      4.9,
+                    ],
+                    "cityName": "Amsterdam",
+                    "cityZoom": 15,
+                    "coordinates": Array [
+                      52.3809553943508,
+                      4.939309666406198,
+                    ],
+                    "description": "description",
+                    "goods": Array [
+                      "Something",
+                    ],
+                    "host": Object {
+                      "avatar": "apartment-01.jpg",
+                      "id": 2,
+                      "isPro": true,
+                      "name": "Name",
+                    },
+                    "id": 4,
+                    "images": Array [
+                      "img/apartment-01.jpg",
+                    ],
+                    "isInBookmarks": false,
+                    "isPremium": false,
+                    "maxAdults": 4,
+                    "photoUrl": "img/apartment-03.jpg",
+                    "price": 180,
+                    "rating": 4,
+                    "title": "Nice, cozy, warm big bed apartment",
+                    "type": "Apartment",
+                    "zoom": 16,
+                  }
+                }
+                cardClass="favorites__card"
+                imageWrapperClass="favorites__image-wrapper"
+                infoClass="favorites__card-info"
+                isSmall={true}
+              />
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </main>
+  <footer
+    className="footer container"
+  >
+    <NavLink
+      className="footer__logo-link"
+      to="/"
+    >
+      <img
+        alt="6 cities logo"
+        className="footer__logo"
+        height="33"
+        src="img/logo.svg"
+        width="64"
+      />
+    </NavLink>
+  </footer>
+</React.Fragment>
+`;

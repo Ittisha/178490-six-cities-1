@@ -1,4 +1,4 @@
-import {INIT_CITY} from '../../mocks/init-city';
+import {INIT_CITY} from '../../mocks/city';
 
 const INITIAL_STATE = {
   city: INIT_CITY,

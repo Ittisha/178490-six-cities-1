@@ -4,7 +4,6 @@ import {CardList} from './card-list';
 import {OFFERS} from '../../mocks/offers';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-
 it(`CardList component is rendered properly`, () => {
   const renderer = new ShallowRenderer();
   const tree = renderer
@@ -14,6 +13,7 @@ it(`CardList component is rendered properly`, () => {
         setActiveOffer={() => {}}
         cardListClass={`near-places__list`}
         cardClass={`near-places__card`}
+        imageWrapperClass={`near-places__image-wrapper`}
       />
     </StaticRouter>);
 

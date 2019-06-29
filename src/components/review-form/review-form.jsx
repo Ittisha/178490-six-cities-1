@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {Review} from '../../consts';
 import {Operation} from '../../reducers/review/review';
 
-export class ReviewForm extends React.PureComponent {
+class ReviewForm extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -124,7 +124,7 @@ export class ReviewForm extends React.PureComponent {
           placeholder="Tell how was your stay, what you like and what can be improved"
           minLength={Review.MIN_LENGTH}
           maxLength={Review.MAX_LENGTH}
-          required
+          required={true}
         ></textarea>
         <div className="reviews__button-wrapper">
           <p className="reviews__help">
@@ -168,4 +168,5 @@ const mapDispatchToProps = (dispatch) => ({
   onFormSending: (data) => dispatch(Operation.sendReview(data)),
 });
 
+export {ReviewForm};
 export default connect(null, mapDispatchToProps)(ReviewForm);

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export const withToggleSorting = (Component) => {
+const withToggleSorting = (Component) => {
   return class WithToggledSorting extends React.PureComponent {
     constructor(props) {
       super(props);
@@ -29,3 +29,5 @@ export const withToggleSorting = (Component) => {
     }
   };
 };
+
+export {withToggleSorting};

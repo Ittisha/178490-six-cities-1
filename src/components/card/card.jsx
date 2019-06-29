@@ -3,10 +3,16 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 import {getRatingPercent} from '../../utils/get-rating-percent';
-import {APARTMENT_TYPES} from '../../consts';
+import {
+  ApartmentTypes,
+  SmallCardImage,
+  DefaultCardImage,
+  SmallBookmarkButton,
+} from '../../consts';
 import BookmarkButton from '../bookmark-button/bookmark-button';
+import apartmentPropsShape from '../../props/apartment';
 
-export class Card extends React.PureComponent {
+class Card extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -14,7 +20,7 @@ export class Card extends React.PureComponent {
   }
 
   render() {
-    const {apartment, cardClass} = this.props;
+    const {apartment, cardClass, imageWrapperClass, infoClass, isSmall} = this.props;
     const {
       isPremium,
       isInBookmarks,
@@ -26,6 +32,9 @@ export class Card extends React.PureComponent {
       id
     } = apartment;
 
+    const imgWidth = isSmall ? SmallCardImage.WIDTH : DefaultCardImage.WIDTH;
+    const imgHeight = isSmall ? SmallCardImage.HEIGHT : DefaultCardImage.HEIGHT;
+
     return (
       <article className={`place-card ${cardClass}`}>
         {isPremium && (
@@ -33,12 +42,12 @@ export class Card extends React.PureComponent {
             <span>Premium</span>
           </div>
         )}
-        <div className="cities__image-wrapper place-card__image-wrapper">
+        <div className={`place-card__image-wrapper ${imageWrapperClass}`}>
           <a href="#" onClick={this._handleImgClick}>
-            <img className="place-card__image" src={photoUrl} width="260" height="200" alt="Place image"/>
+            <img className="place-card__image" src={photoUrl} width={imgWidth} height={imgHeight} alt="Place image"/>
           </a>
         </div>
-        <div className="place-card__info">
+        <div className={`place-card__info ${infoClass}`}>
           <div className="place-card__price-wrapper">
             <div className="place-card__price">
               <b className="place-card__price-value">&euro;{price}</b>
@@ -48,8 +57,8 @@ export class Card extends React.PureComponent {
               offerId={id}
               isInBookmarks={isInBookmarks}
               className="place-card"
-              width={18}
-              height={19}
+              width={SmallBookmarkButton.WIDTH}
+              height={SmallBookmarkButton.HEIGHT}
             />
           </div>
           <div className="place-card__rating rating">
@@ -61,7 +70,7 @@ export class Card extends React.PureComponent {
           <h2 className="place-card__name">
             <Link to={`/offer/${id}`}>{title}</Link>
           </h2>
-          <p className="place-card__type">{APARTMENT_TYPES[type]}</p>
+          <p className="place-card__type">{ApartmentTypes[type.toUpperCase()]}</p>
         </div>
       </article>);
   }
@@ -75,16 +84,17 @@ export class Card extends React.PureComponent {
 }
 
 Card.propTypes = {
-  apartment: PropTypes.shape({
-    isPremium: PropTypes.bool.isRequired,
-    isInBookmarks: PropTypes.bool.isRequired,
-    photoUrl: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired,
-    coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
-  }),
+  apartment: apartmentPropsShape.isRequired,
   onImgClick: PropTypes.func,
   cardClass: PropTypes.string.isRequired,
+  infoClass: PropTypes.string,
+  imageWrapperClass: PropTypes.string.isRequired,
+  isSmall: PropTypes.bool,
 };
+
+Card.defaultProps = {
+  infoClass: ``,
+  isSmall: false,
+};
+
+export {Card};

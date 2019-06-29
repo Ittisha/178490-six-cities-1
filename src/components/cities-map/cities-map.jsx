@@ -15,18 +15,10 @@ const ACTIVE_ICON = {
   iconSize: [27, 39],
 };
 
-export class CitiesMap extends React.PureComponent {
+class CitiesMap extends React.PureComponent {
   constructor(props) {
     super(props);
     this._markers = {};
-  }
-
-  render() {
-    return (
-      <div id="map" style={{height: `100%`}} >
-        <ReactResizeDetector handleHeight handleWidth onResize={this._handleHeightResize.bind(this)}/>
-      </div>
-    );
   }
 
   componentDidMount() {
@@ -58,6 +50,14 @@ export class CitiesMap extends React.PureComponent {
   componentWillUnmount() {
     this._map.remove();
     this._map = null;
+  }
+
+  render() {
+    return (
+      <div id="map" style={{height: `100%`}} >
+        <ReactResizeDetector handleHeight handleWidth onResize={this._handleHeightResize.bind(this)}/>
+      </div>
+    );
   }
 
   _setMapCenter() {
@@ -116,3 +116,5 @@ CitiesMap.propTypes = {
     zoom: PropTypes.number.isRequired,
   }).isRequired,
 };
+
+export {CitiesMap};
