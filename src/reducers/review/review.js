@@ -16,9 +16,6 @@ export const ActionCreator = {
     type: ActionType.LOAD_REVIEW_SUCCESS,
     payload: reviews,
   }),
-  sendReview: () => ({
-    type: ActionType.SEND_REVIEW,
-  }),
 };
 
 export const Operation = {

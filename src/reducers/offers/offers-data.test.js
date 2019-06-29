@@ -48,6 +48,21 @@ describe(`Reducer works correctly`, () => {
     });
     expect(reducerOutput.offers.length).not.toBe(0);
   });
+
+  it(`should update offers`, () => {
+    const reducerOutput = reducer({
+      city: {
+        name: `Amsterdam`,
+        coords: [52.38333, 4.9],
+      },
+      offers: [OFFERS[0]]
+    },
+    {
+      type: ActionType.UPDATE_OFFERS,
+      payload: OFFERS[0],
+    });
+    expect(reducerOutput.offers.length).toBe(1);
+  });
 });
 
 describe(`ActionCreator works correctly`, () => {
@@ -55,6 +70,12 @@ describe(`ActionCreator works correctly`, () => {
     expect(ActionCreator.loadOffers(OFFERS)).toEqual({
       type: ActionType.LOAD_OFFERS_SUCCESS,
       payload: OFFERS,
+    });
+  });
+  it(`should return action with offer payload for updating offers`, () => {
+    expect(ActionCreator.updateOffers(OFFERS[1])).toEqual({
+      type: ActionType.UPDATE_OFFERS,
+      payload: OFFERS[1],
     });
   });
 });

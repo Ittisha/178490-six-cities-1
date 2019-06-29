@@ -10,12 +10,13 @@ import {Operation} from '../../reducers/favorites/favorites';
 import {getFavorites} from '../../reducers/selectors';
 import {ActionCreator as CitiesActionCreator} from '../../reducers/cities/cities';
 
-export class Favorites extends React.PureComponent {
+class Favorites extends React.PureComponent {
   constructor(props) {
     super(props);
 
     this._handleLinkClick = this._handleLinkClick.bind(this);
   }
+
   componentDidMount() {
     const {loadFavorites} = this.props;
     loadFavorites();
@@ -106,4 +107,5 @@ const mapDispatchToProps = (dispatch) => ({
   changeCity: (city) => dispatch(CitiesActionCreator.changeCity(city)),
 });
 
+export {Favorites};
 export default connect(mapStateToProps, mapDispatchToProps)(Favorites);

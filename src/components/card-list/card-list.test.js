@@ -4,7 +4,6 @@ import {CardList} from './card-list';
 import {OFFERS} from '../../mocks/offers';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-
 it(`CardList component is rendered properly`, () => {
   const renderer = new ShallowRenderer();
   const tree = renderer

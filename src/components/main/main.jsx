@@ -9,10 +9,21 @@ import {Sorting} from '../sorting/sorting';
 import {withActiveItem} from '../../hoc/with-active-item/with-active-item';
 import {addPluralS} from '../../utils/addPluralS';
 import apartmentPropsShape from '../../props/apartment';
+import cityPropsShape from '../../props/city';
 
 const SortingWithToggleAndActiveItem = withActiveItem(withToggleSorting(Sorting));
 
-export const Main = ({apartments, city, cities, citiesCoords, handleCityChange, activeItem, setActiveItem, citiesZoom, onOptionChange}) => {
+const Main = ({
+  apartments,
+  city,
+  cities,
+  citiesCoords,
+  handleCityChange,
+  activeItem,
+  setActiveItem,
+  citiesZoom,
+  onOptionChange
+}) => {
   const apartmentsCoords = apartments.map(({id, coordinates, zoom}) => ({id, coordinates, zoom}));
   const apartmentsAmount = apartments.length;
   const placeWordForm = addPluralS(apartmentsAmount, `place`);
@@ -79,11 +90,7 @@ export const Main = ({apartments, city, cities, citiesCoords, handleCityChange, 
 
 Main.propTypes = {
   apartments: PropTypes.arrayOf(apartmentPropsShape).isRequired,
-  city: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    coords: PropTypes.arrayOf(PropTypes.number).isRequired,
-    zoom: PropTypes.number.isRequired,
-  }).isRequired,
+  city: cityPropsShape.isRequired,
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   citiesCoords: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
   citiesZoom: PropTypes.objectOf(PropTypes.number).isRequired,
@@ -92,3 +99,5 @@ Main.propTypes = {
   setActiveItem: PropTypes.func.isRequired,
   onOptionChange: PropTypes.func.isRequired,
 };
+
+export {Main};

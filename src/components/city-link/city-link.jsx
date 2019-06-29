@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
-export class CityLink extends React.PureComponent {
+class CityLink extends React.PureComponent {
   constructor(props) {
     super(props);
     this._handleClick = this._handleClick.bind(this);
@@ -44,3 +44,5 @@ CityLink.propTypes = {
 CityLink.defaultProps = {
   isDiv: false,
 };
+
+export {CityLink};

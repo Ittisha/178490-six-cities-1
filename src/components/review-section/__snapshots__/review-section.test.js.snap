@@ -33,7 +33,7 @@ exports[`Review correctly renders 1`] = `
           "comment": "",
           "date": "",
           "id": 2,
-          "rating": 5,
+          "rating": 3,
           "user": Object {
             "avatarUrl": "",
             "id": 5,

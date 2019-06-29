@@ -2,18 +2,12 @@ import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import {App} from './app';
 import {OFFERS} from '../../mocks/offers';
-import {INIT_CITY} from '../../mocks/init-city';
-
-
-const cities = [`Amsterdam`, `Paris`];
-const citiesCoords = {
-  Amsterdam: [52.38333, 4.9],
-  Paris: [48.864716, 2.349014],
-};
-const citiesZoom = {
-  Amsterdam: 17,
-  Paris: 15,
-};
+import {
+  INIT_CITY,
+  MOCK_CITIES,
+  MOCK_CITIES_COORDS,
+  MOCK_CITIES_ZOOM,
+} from '../../mocks/city';
 
 it(`App is rendered properly`, () => {
   const renderer = new ShallowRenderer();
@@ -21,12 +15,12 @@ it(`App is rendered properly`, () => {
       <App
         apartments={OFFERS}
         city={INIT_CITY}
-        cities={cities}
-        citiesCoords={citiesCoords}
+        cities={MOCK_CITIES}
+        citiesCoords={MOCK_CITIES_COORDS}
         onAppMounting={() => {}}
         handleCityChange={() => {}}
         isAuthorized={false}
-        citiesZoom={citiesZoom}
+        citiesZoom={MOCK_CITIES_ZOOM}
       />);
 
   expect(tree).toMatchSnapshot();

@@ -7,12 +7,7 @@ import {getIsAuthorized, getUser} from '../../reducers/selectors';
 import {BASE_URL} from '../../api';
 import userPropTypes from '../../props/user';
 
-export const Header = (props) => {
-  const {
-    isAuthorized,
-    user,
-  } = props;
-
+const Header = ({isAuthorized, user}) => {
   const renderLinkLabel = () => {
     if (isAuthorized && user) {
       return (
@@ -106,4 +101,5 @@ const mapStateToProps = (state, ownProps) => Object.assign(
     }
 );
 
+export {Header};
 export default connect(mapStateToProps)(Header);

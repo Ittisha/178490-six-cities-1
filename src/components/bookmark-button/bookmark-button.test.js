@@ -1,14 +1,7 @@
 import * as React from 'react';
 import renderer from 'react-test-renderer';
 import {BookmarkButton} from './bookmark-button';
-
-const MOCK_PROPS = {
-  offerId: 1,
-  isInBookmarks: false,
-  className: ``,
-  width: 15,
-  height: 12,
-};
+import {MOCK_PROPS} from '../../mocks/bookmark-button';
 
 it(`Bookmarks are rendered correctly`, () => {
   const tree = renderer

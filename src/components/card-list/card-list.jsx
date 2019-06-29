@@ -2,8 +2,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 
 import {Card} from '../card/card';
+import apartmentPropsShape from '../../props/apartment';
 
-export const CardList = ({apartments, setActiveOffer, cardClass, cardListClass, imageWrapperClass}) => (
+const CardList = ({apartments, setActiveOffer, cardClass, cardListClass, imageWrapperClass}) => (
   <div className={`places__list ${cardListClass}`}>
     {apartments.map((apartment) => (
       <Card
@@ -18,19 +19,11 @@ export const CardList = ({apartments, setActiveOffer, cardClass, cardListClass, 
 );
 
 CardList.propTypes = {
-  apartments: PropTypes.arrayOf(PropTypes.shape({
-    isPremium: PropTypes.bool,
-    isInBookmarks: PropTypes.bool,
-    photoUrl: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired,
-    id: PropTypes.number.isRequired,
-    coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
-  })).isRequired,
+  apartments: PropTypes.arrayOf(apartmentPropsShape).isRequired,
   setActiveOffer: PropTypes.func,
   cardClass: PropTypes.string.isRequired,
   cardListClass: PropTypes.string.isRequired,
   imageWrapperClass: PropTypes.string.isRequired,
 };
+
+export {CardList};

@@ -12,7 +12,7 @@ import ReviewForm from '../review-form/review-form';
 
 const ReviewFormWithFormSubmit = withFormSubmit(ReviewForm);
 
-export class ReviewSection extends React.PureComponent {
+class ReviewSection extends React.PureComponent {
   componentDidMount() {
     const {loadReviews, offerId} = this.props;
     loadReviews(offerId);
@@ -37,8 +37,6 @@ export class ReviewSection extends React.PureComponent {
       </section>
     );
   }
-
-
 }
 
 ReviewSection.propTypes = {
@@ -62,4 +60,5 @@ const mapDispatchToProps = (dispatch) => ({
   loadReviews: (id) => dispatch(Operation.loadReviews(id))
 });
 
+export {ReviewSection};
 export default connect(mapStateToProps, mapDispatchToProps)(ReviewSection);

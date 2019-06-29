@@ -10,8 +10,9 @@ import {
   SmallBookmarkButton,
 } from '../../consts';
 import BookmarkButton from '../bookmark-button/bookmark-button';
+import apartmentPropsShape from '../../props/apartment';
 
-export class Card extends React.PureComponent {
+class Card extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -83,16 +84,7 @@ export class Card extends React.PureComponent {
 }
 
 Card.propTypes = {
-  apartment: PropTypes.shape({
-    isPremium: PropTypes.bool.isRequired,
-    isInBookmarks: PropTypes.bool.isRequired,
-    photoUrl: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired,
-    coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
-  }),
+  apartment: apartmentPropsShape.isRequired,
   onImgClick: PropTypes.func,
   cardClass: PropTypes.string.isRequired,
   infoClass: PropTypes.string,
@@ -104,3 +96,5 @@ Card.defaultProps = {
   infoClass: ``,
   isSmall: false,
 };
+
+export {Card};

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import renderer from 'react-test-renderer';
 import {CityLink} from './city-link';
-import {INIT_CITY} from '../../mocks/init-city';
+import {INIT_CITY} from '../../mocks/city';
 
 it(`CityLink component is rendered properly`, () => {
   const tree = renderer

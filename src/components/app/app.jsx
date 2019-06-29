@@ -29,7 +29,7 @@ const SignInWithAuthorization = withFormSubmit(SignIn);
 const FavouritesWithPrivateRoutes = withPrivateRoutes(Favorites);
 const MainWithActiveItem = withActiveItem(withSortedItems(Main));
 
-export class App extends React.PureComponent {
+class App extends React.PureComponent {
   render() {
     const {
 
@@ -43,7 +43,6 @@ export class App extends React.PureComponent {
 
     const MainWithPropsAndActiveItem = () => {
       return (<MainWithActiveItem
-
         city={city}
         cities={cities}
         handleCityChange={handleCityChange}
@@ -95,4 +94,5 @@ const mapDispatchToProps = (dispatch) => ({
   checkAuthorization: () => dispatch(UserOperation.checkAuthorization()),
 });
 
+export {App};
 export default connect(mapStateToProps, mapDispatchToProps)(App);

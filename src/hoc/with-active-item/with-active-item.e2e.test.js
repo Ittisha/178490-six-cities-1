@@ -4,13 +4,10 @@ import Adapter from 'enzyme-adapter-react-16/build';
 
 import {withActiveItem} from './with-active-item';
 
-
 Enzyme.configure({adapter: new Adapter()});
-
 
 const MockComponent = () => <div />;
 const WithActiveItem = withActiveItem(MockComponent);
-
 
 it(`Wrapped component should return active item`, () => {
   const component = shallow(<WithActiveItem />);

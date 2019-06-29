@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import userPropTypes from '../../props/user';
 import {MONTHS, ISO_END_DAY_ORDER_NUMBER, ISO_END_YEAR_ORDER_NUMBER} from '../../consts';
 
-export const Review = ({user, rating, comment, date}) => {
+const Review = ({user, rating, comment, date}) => {
   const dateTime = date.slice(0, ISO_END_DAY_ORDER_NUMBER);
   const year = date.slice(0, ISO_END_YEAR_ORDER_NUMBER);
   const month = MONTHS[new Date(date).getMonth()];
@@ -48,3 +48,5 @@ Review.propTypes = {
   comment: PropTypes.string,
   date: PropTypes.string,
 };
+
+export {Review};

@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
 
-import {USER_AUTHORIZATION} from '../../props/user';
+import {USER_AUTHORIZATION_PROP_TYPES} from '../../props/user';
 import cityPropsShape from '../../props/city';
 import {getCity} from '../../reducers/selectors';
 import {Operation} from '../../reducers/user/user';
 
-export class SignIn extends React.PureComponent {
+class SignIn extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -99,7 +99,7 @@ SignIn.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onLogin: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
-  formData: USER_AUTHORIZATION,
+  formData: USER_AUTHORIZATION_PROP_TYPES,
   city: cityPropsShape,
 };
 
@@ -111,4 +111,5 @@ const mapDispatchToProps = (dispatch) => ({
   onLogin: (data) => dispatch(Operation.logIn(data)),
 });
 
+export {SignIn};
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

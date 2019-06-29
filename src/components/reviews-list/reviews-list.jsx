@@ -3,22 +3,20 @@ import PropTypes from "prop-types";
 import {Review} from '../review/review';
 import userPropTypes from '../../props/user';
 
-export const ReviewsList = ({reviews}) => {
-  return (
-    <ul className="reviews__list">
-      {reviews.map((review) => (
-        <Review
-          key={review.id}
-          user={review.user}
-          id={review.id}
-          comment={review.comment}
-          date={review.date}
-          rating={review.rating}
-        />
-      ))}
-    </ul>
-  );
-};
+const ReviewsList = ({reviews}) => (
+  <ul className="reviews__list">
+    {reviews.map((review) => (
+      <Review
+        key={review.id}
+        user={review.user}
+        id={review.id}
+        comment={review.comment}
+        date={review.date}
+        rating={review.rating}
+      />
+    ))}
+  </ul>
+);
 
 ReviewsList.propTypes = {
   reviews: PropTypes.arrayOf(PropTypes.shape({
@@ -28,3 +26,5 @@ ReviewsList.propTypes = {
     date: PropTypes.string,
   }))
 };
+
+export {ReviewsList};

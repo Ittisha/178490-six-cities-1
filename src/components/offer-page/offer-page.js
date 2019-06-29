@@ -13,7 +13,7 @@ import {CitiesMap} from '../cities-map/cities-map';
 import {CardList} from '../card-list/card-list';
 import {MAX_PHOTO_NUMBER} from '../../consts';
 
-export const OfferPage = ({offer, nearestOffers}) => {
+const OfferPage = ({offer, nearestOffers}) => {
   const {
     images,
     title,
@@ -176,4 +176,5 @@ const mapStateToProps = (state, ownProps) => {
   });
 };
 
+export {OfferPage};
 export default connect(mapStateToProps)(OfferPage);

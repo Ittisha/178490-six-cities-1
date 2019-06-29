@@ -2,14 +2,7 @@ import * as React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {BookmarkButton} from './bookmark-button';
-
-const MOCK_PROPS = {
-  offerId: 1,
-  isInBookmarks: false,
-  className: ``,
-  width: 15,
-  height: 12,
-};
+import {MOCK_PROPS} from '../../mocks/bookmark-button';
 
 Enzyme.configure({adapter: new Adapter()});
 
