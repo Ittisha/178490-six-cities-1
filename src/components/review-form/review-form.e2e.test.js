@@ -29,6 +29,10 @@ it(`Review form sends correct data`, () => {
         onFormSending={onFormSending}
         offerId={1}
         formData={FORM_MOCK_DATA}
+        isSent={false}
+        hasSubmitError={false}
+        handleChangeSubmitStatus={() => {}}
+        onBlur={() => {}}
       />);
 
   const instance = renderedComponent.instance();

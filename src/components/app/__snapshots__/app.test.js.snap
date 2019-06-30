@@ -37,6 +37,10 @@ exports[`App is rendered properly 1`] = `
       }
       path="/offer/:id"
     />
+    <Redirect
+      from="*"
+      to="/"
+    />
   </Switch>
 </React.Fragment>
 `;

@@ -36,10 +36,6 @@ describe(`Operation works correctly`, () => {
 describe(`Reducer works correctly`, () => {
   it(`should return offers`, () => {
     const reducerOutput = reducer({
-      city: {
-        name: `Amsterdam`,
-        coords: [52.38333, 4.9],
-      },
       offers: []
     },
     {
@@ -47,6 +43,7 @@ describe(`Reducer works correctly`, () => {
       payload: OFFERS,
     });
     expect(reducerOutput.offers.length).not.toBe(0);
+    expect(reducerOutput.isLoading).toBe(false);
   });
 
   it(`should update offers`, () => {

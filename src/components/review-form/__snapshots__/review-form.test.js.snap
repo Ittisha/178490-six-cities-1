@@ -5,6 +5,7 @@ exports[`Review form correctly renders 1`] = `
   action="#"
   className="reviews__form form"
   method="post"
+  onBlur={[Function]}
   onChange={[Function]}
   onSubmit={[Function]}
 >

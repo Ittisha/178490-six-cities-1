@@ -11,6 +11,10 @@ export const getOffers = (state) => (
   state[NameSpace.OFFERS].offers
 );
 
+export const getOffersLoadingStatus = (state) => (
+  state[NameSpace.OFFERS].isLoading
+);
+
 export const getUser = (state) => (
   state[NameSpace.USER].user
 );
@@ -18,6 +22,14 @@ export const getUser = (state) => (
 export const getReviews = (state) => {
   const reviews = state[NameSpace.REVIEWS].reviews;
   return [...reviews].sort((a, b) => new Date(b.date) - new Date(a.date));
+};
+
+export const getReviewsSubmitStatus = (state) => {
+  return state[NameSpace.REVIEWS].isSubmitted;
+};
+
+export const getReviewsSubmitErrorStatus = (state) => {
+  return state[NameSpace.REVIEWS].hasSubmitError;
 };
 
 export const getIsAuthorized = (state) => (
