@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {Review} from '../../consts';
-import {Operation} from '../../reducers/review/review';
+import {Operation, ActionCreator} from '../../reducers/review/review';
+import {getReviewsSubmitErrorStatus, getReviewsSubmitStatus} from '../../reducers/selectors';
 
 class ReviewForm extends React.PureComponent {
   constructor(props) {
@@ -13,15 +14,24 @@ class ReviewForm extends React.PureComponent {
 
     this._handleFormSubmit = this._handleFormSubmit.bind(this);
   }
+  componentDidUpdate() {
+    if (this.props.isSent) {
+      this.props.handleChangeSubmitStatus(false);
+      this._formRef.current.reset();
+    }
+  }
 
   render() {
-    const {disabled, onChange} = this.props;
+    const {disabled, onChange, onBlur, hasSubmitError} = this.props;
+    const isSubmitButtonDisabled = hasSubmitError ? false : disabled;
+
     return (
       <form
         className="reviews__form form"
         action="#"
         method="post"
         onSubmit={this._handleFormSubmit}
+        onBlur={onBlur}
         onChange={onChange}
         ref={this._formRef}
       >
@@ -134,7 +144,7 @@ class ReviewForm extends React.PureComponent {
           <button
             className="reviews__submit form__submit button"
             type="submit"
-            disabled={disabled}
+            disabled={isSubmitButtonDisabled}
           >
             Submit
           </button>
@@ -146,15 +156,22 @@ class ReviewForm extends React.PureComponent {
   _handleFormSubmit(evt) {
     evt.preventDefault();
     const {offerId, formData, onSubmit, onFormSending} = this.props;
-    onFormSending(Object.assign({}, formData, {id: offerId}));
+    let dataToSend = formData;
+
+    if (Object.keys(formData).length !== 2) {
+      const data = new FormData(evt.currentTarget);
+      dataToSend = {rating: data.get(`rating`), comment: data.get(`comment`)};
+    }
+
+    onFormSending(Object.assign({}, dataToSend, {id: offerId}));
     onSubmit();
-    this._formRef.current.reset();
   }
 }
 
 ReviewForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired,
   onFormSending: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
   formData: PropTypes.shape({
@@ -162,11 +179,20 @@ ReviewForm.propTypes = {
     comment: PropTypes.string,
   }),
   offerId: PropTypes.number.isRequired,
+  isSent: PropTypes.bool.isRequired,
+  hasSubmitError: PropTypes.bool.isRequired,
+  handleChangeSubmitStatus: PropTypes.func.isRequired,
 };
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  isSent: getReviewsSubmitStatus(state),
+  hasSubmitError: getReviewsSubmitErrorStatus(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onFormSending: (data) => dispatch(Operation.sendReview(data)),
+  handleChangeSubmitStatus: (status) => dispatch(ActionCreator.setSubmitStatus(status)),
 });
 
 export {ReviewForm};
-export default connect(null, mapDispatchToProps)(ReviewForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewForm);

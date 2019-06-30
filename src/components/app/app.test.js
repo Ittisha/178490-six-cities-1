@@ -21,6 +21,8 @@ it(`App is rendered properly`, () => {
         handleCityChange={() => {}}
         isAuthorized={false}
         citiesZoom={MOCK_CITIES_ZOOM}
+        isLoading={false}
+        loadOffers={() => {}}
       />);
 
   expect(tree).toMatchSnapshot();

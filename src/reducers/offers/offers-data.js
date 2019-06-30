@@ -15,6 +15,7 @@ export const ActionType = {
 
 const INITIAL_STATE = {
   offers: [],
+  isLoading: true,
 };
 
 export const ActionCreator = {
@@ -59,6 +60,7 @@ export const reducer = (state = INITIAL_STATE, action) => {
     case ActionType.LOAD_OFFERS_SUCCESS:
       return Object.assign({}, state, {
         offers: action.payload,
+        isLoading: false,
       });
     case ActionType.UPDATE_OFFERS:
       return Object.assign({}, state, {
