@@ -10,6 +10,14 @@ import {withActiveItem} from '../../hoc/with-active-item/with-active-item';
 import {addPluralS} from '../../utils/addPluralS';
 import apartmentPropsShape from '../../props/apartment';
 import cityPropsShape from '../../props/city';
+import {
+  getCities,
+  getCitiesCoords,
+  getCitiesZoom,
+  getCity,
+  getCityOffers,
+} from '../../reducers/selectors';
+import {connect} from 'react-redux';
 
 const SortingWithToggleAndActiveItem = withActiveItem(withToggleSorting(Sorting));
 
@@ -100,4 +108,13 @@ Main.propTypes = {
   onOptionChange: PropTypes.func.isRequired,
 };
 
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  city: getCity(state),
+  cities: getCities(state),
+  citiesCoords: getCitiesCoords(state),
+  citiesZoom: getCitiesZoom(state),
+  apartments: getCityOffers(state),
+});
+
 export {Main};
+export default connect(mapStateToProps)(Main);

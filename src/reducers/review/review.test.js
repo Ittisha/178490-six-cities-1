@@ -24,7 +24,7 @@ describe(`Operation works correctly`, () => {
     return reviewsLoader(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
-        expect(dispatch).toHaveBeenNthCalledWith(1, {
+        expect(dispatch).toHaveBeenCalledWith({
           type: ActionType.LOAD_REVIEW_SUCCESS,
           payload: mapReviews(MOCK_REVIEWS),
         });
@@ -43,7 +43,7 @@ describe(`Operation works correctly`, () => {
 
     return reviewsLoader(dispatch, jest.fn(), api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenCalledTimes(3);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_REVIEW_SUCCESS,
           payload: mapReviews(MOCK_REVIEWS),
@@ -63,6 +63,30 @@ describe(`Reducer works correctly`, () => {
     });
     expect(reducerOutput.reviews.length).not.toBe(0);
   });
+
+  it(`should set error status`, () => {
+    const reducerOutput = reducer({
+      reviews: [],
+      hasSubmitError: false,
+    },
+    {
+      type: ActionType.SET_HAS_SUBMIT_ERROR,
+      payload: true,
+    });
+    expect(reducerOutput.hasSubmitError).toBe(true);
+  });
+
+  it(`should set submit status`, () => {
+    const reducerOutput = reducer({
+      reviews: [],
+      isSubmitted: false,
+    },
+    {
+      type: ActionType.SET_SUBMIT_STATUS,
+      payload: true,
+    });
+    expect(reducerOutput.isSubmitted).toBe(true);
+  });
 });
 
 describe(`ActionCreator works correctly`, () => {
@@ -70,6 +94,18 @@ describe(`ActionCreator works correctly`, () => {
     expect(ActionCreator.loadReviews(MOCK_REVIEWS)).toEqual({
       type: ActionType.LOAD_REVIEW_SUCCESS,
       payload: MOCK_REVIEWS,
+    });
+  });
+  it(`should return correct error status`, () => {
+    expect(ActionCreator.setHasSubmitError(false)).toEqual({
+      type: ActionType.SET_HAS_SUBMIT_ERROR,
+      payload: false,
+    });
+  });
+  it(`should return correct submit status`, () => {
+    expect(ActionCreator.setSubmitStatus(false)).toEqual({
+      type: ActionType.SET_SUBMIT_STATUS,
+      payload: false,
     });
   });
 });

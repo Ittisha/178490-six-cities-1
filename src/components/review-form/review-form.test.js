@@ -8,8 +8,12 @@ it(`Review form correctly renders`, () => {
     .create(<ReviewForm
       onChange={() => {}}
       onSubmit={() => {}}
+      onBlur={() => {}}
       onFormSending={() => {}}
       offerId={1}
+      isSent={false}
+      hasSubmitError={false}
+      handleChangeSubmitStatus={() => {}}
     />).toJSON();
 
   expect(tree).toMatchSnapshot();

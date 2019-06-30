@@ -8,7 +8,6 @@ import {compose} from 'recompose';
 import {Router} from 'react-router-dom';
 
 import {history} from './history';
-import {Operation as OffersOperatiom} from './reducers/offers/offers-data';
 import {Operation as UserOperation} from './reducers/user/user';
 import App from './components/app/app.jsx';
 import {reducer} from './reducers/reducer';
@@ -33,7 +32,6 @@ const init = () => {
       )
   );
 
-  store.dispatch(OffersOperatiom.loadOffers());
   store.dispatch(UserOperation.checkAuthorization());
 
   ReactDOM.render(

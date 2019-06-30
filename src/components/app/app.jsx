@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import {Switch, Route, Redirect} from 'react-router-dom';
 
-import {Main} from '../main/main';
+import Main from '../main/main';
 import Header from '../header/header';
 import SignIn from '../sign-in/sign-in';
 import Favorites from '../favorites/favorites';
@@ -17,37 +17,34 @@ import {
   getCitiesZoom,
   getCity,
   getCityOffers,
-  getIsAuthorized,
+  getIsAuthorized, getOffersLoadingStatus,
 } from '../../reducers/selectors';
 import {ActionCreator as CitiesActionCreator} from '../../reducers/cities/cities';
 import {connect} from 'react-redux';
 import {Operation as UserOperation} from '../../reducers/user/user';
 import apartmentPropsShape from '../../props/apartment';
 import cityPropsShape from '../../props/city';
+import {Operation as OffersOperation} from '../../reducers/offers/offers-data';
 
 const SignInWithAuthorization = withFormSubmit(SignIn);
 const FavouritesWithPrivateRoutes = withPrivateRoutes(Favorites);
 const MainWithActiveItem = withActiveItem(withSortedItems(Main));
 
 class App extends React.PureComponent {
+  componentDidMount() {
+    this.props.loadOffers();
+  }
+
   render() {
     const {
-
-      city,
-      cities,
       handleCityChange,
-      citiesCoords,
-      citiesZoom,
       isAuthorized,
+      isLoading,
     } = this.props;
 
     const MainWithPropsAndActiveItem = () => {
       return (<MainWithActiveItem
-        city={city}
-        cities={cities}
         handleCityChange={handleCityChange}
-        citiesCoords={citiesCoords}
-        citiesZoom={citiesZoom}
       />
       );
     };
@@ -56,7 +53,7 @@ class App extends React.PureComponent {
       ? <Redirect to="/" />
       : <SignInWithAuthorization />;
 
-    return (
+    return isLoading ? <div className={`loader`}>Loading</div> : (
       <React.Fragment>
         <Header />
         <Switch>
@@ -64,6 +61,7 @@ class App extends React.PureComponent {
           <Route path="/login" render={redirectSignInPage} />
           <Route path="/favorites" component={FavouritesWithPrivateRoutes}/>
           <Route path="/offer/:id" component={OfferPage}/>
+          <Redirect from="*" to="/" />
         </Switch>
       </React.Fragment>
     );
@@ -78,6 +76,8 @@ App.propTypes = {
   citiesZoom: PropTypes.objectOf(PropTypes.number).isRequired,
   handleCityChange: PropTypes.func.isRequired,
   isAuthorized: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  loadOffers: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
@@ -87,11 +87,13 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   citiesZoom: getCitiesZoom(state),
   apartments: getCityOffers(state),
   isAuthorized: getIsAuthorized(state),
+  isLoading: getOffersLoadingStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   handleCityChange: (city) => dispatch(CitiesActionCreator.changeCity(city)),
   checkAuthorization: () => dispatch(UserOperation.checkAuthorization()),
+  loadOffers: () => dispatch(OffersOperation.loadOffers()),
 });
 
 export {App};
