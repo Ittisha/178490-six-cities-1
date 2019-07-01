@@ -4,6 +4,7 @@ import {SUCCESS_STATUS} from '../../consts';
 
 const initialState = {
   isAuthorized: false,
+  isLoading: false,
   user: null,
   error: null,
 };
@@ -12,6 +13,7 @@ const initialState = {
 const ActionType = {
   SET_USER_DATA: `SET_USER_DATA`,
   SET_IS_AUTHORIZED: `SET_IS_AUTHORIZED`,
+  SET_IS_AUTHORIZATION_CHECKED: `SET_IS_AUTHORIZATION_CHECKED`,
 };
 
 const ActionCreator = {
@@ -37,11 +39,12 @@ const Operation = {
       .then((response) => {
         if (response.status === SUCCESS_STATUS) {
           const userData = mapUser(response.data);
-          dispatch(ActionCreator.setUserData(userData));
           dispatch(ActionCreator.setIsAuthorized(true));
-          return;
+          dispatch(ActionCreator.setUserData(userData));
         }
-        toast.error(response.response.data.error);
+      })
+      .catch((error) => {
+        toast.error(error.message);
       });
   },
 

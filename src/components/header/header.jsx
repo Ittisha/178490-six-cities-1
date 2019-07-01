@@ -22,7 +22,7 @@ const Header = ({isAuthorized, user}) => {
   };
 
   const renderAvatar = () => {
-    if (isAuthorized && user.hasOwnProperty(`avatarUrl`)) {
+    if (isAuthorized && user && user.hasOwnProperty(`avatarUrl`)) {
       return (
         <div
           className="header__avatar-wrapper user__avatar-wrapper"

@@ -63,7 +63,7 @@ describe(`Operation works correctly`, () => {
     return offersLoader(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(2);
-        expect(dispatch).toHaveBeenNthCalledWith(1, {
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: ActionType.SET_USER_DATA,
           payload: mapUser(user),
         });

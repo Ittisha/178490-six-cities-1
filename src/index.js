@@ -8,7 +8,6 @@ import {compose} from 'recompose';
 import {Router} from 'react-router-dom';
 
 import {history} from './history';
-import {Operation as UserOperation} from './reducers/user/user';
 import App from './components/app/app.jsx';
 import {reducer} from './reducers/reducer';
 import {ActionCreator as UserActionCreator} from './reducers/user/user';
@@ -31,8 +30,6 @@ const init = () => {
             : (a) => a
       )
   );
-
-  store.dispatch(UserOperation.checkAuthorization());
 
   ReactDOM.render(
       <Provider store={store}>

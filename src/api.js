@@ -14,7 +14,7 @@ export const createApi = (onFailCallback) => {
   const onSuccess = (response) => response;
 
   const onFail = (err) => {
-    if (err.response.status === FORBIDDEN_STATUS) {
+    if (err.response.status === FORBIDDEN_STATUS && err.response.config.url !== `${BASE_URL}/login`) {
       onFailCallback();
     }
     return err;

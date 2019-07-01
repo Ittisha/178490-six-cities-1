@@ -15,9 +15,9 @@ import {
   getCitiesCoords,
   getCitiesZoom,
   getCity,
-  getCityOffers,
 } from '../../reducers/selectors';
 import {connect} from 'react-redux';
+import {ActionCreator as CitiesActionCreator} from '../../reducers/cities/cities';
 
 const SortingWithToggleAndActiveItem = withActiveItem(withToggleSorting(Sorting));
 
@@ -113,8 +113,11 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   cities: getCities(state),
   citiesCoords: getCitiesCoords(state),
   citiesZoom: getCitiesZoom(state),
-  apartments: getCityOffers(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  handleCityChange: (city) => dispatch(CitiesActionCreator.changeCity(city)),
 });
 
 export {Main};
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
